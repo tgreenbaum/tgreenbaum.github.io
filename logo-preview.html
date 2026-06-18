@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Logo preview</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, system-ui, sans-serif;
+    background: #f5f5f7;
+    padding: 2rem;
+    color: #111;
+  }
+  h1 { font-size: 1.4rem; margin-bottom: 0.5rem; font-weight: 600; }
+  p { color: #666; margin-bottom: 2rem; }
+  .row {
+    display: grid;
+    grid-template-columns: 90px 1fr 1fr;
+    align-items: center;
+    gap: 1rem;
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .row__label {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .row__cell {
+    display: flex;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    border-radius: 10px;
+    min-height: 72px;
+  }
+  .row__cell--light { background: rgba(255,255,255,0.85); border: 1px solid #e5e5e5; }
+  .row__cell--dark {
+    background-image: url('images/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .row__cell--dark::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 9, 20, 0.55);
+  }
+  .row__cell--dark img { position: relative; z-index: 1; filter: invert(1) brightness(1.3); }
+  .row__cell img {
+    display: block;
+    height: 36px;
+    width: auto;
+  }
+  .header-row {
+    display: grid;
+    grid-template-columns: 90px 1fr 1fr;
+    gap: 1rem;
+    padding: 0 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+  <h1>Logo preview — pick your favorite</h1>
+  <p>Each row shows one logo file rendered the same way the nav does: 36px tall. Left column = how it looks on white (scrolled state). Right column = how it looks over the hero (inverted to white). Filename is on the far left.</p>
+
+  <h2 style="font-size:1rem;font-weight:600;margin:0 0 0.5rem;letter-spacing:.05em;text-transform:uppercase;color:#666;">New candidates</h2>
+
+  <div class="header-row">
+    <div></div>
+    <div>On white (scrolled)</div>
+    <div>On hero (inverted)</div>
+  </div>
+
+  <div class="row">
+    <div class="row__label">Creattion</div>
+    <div class="row__cell row__cell--light"><img src="images/logos/logo-Creattion.png" alt="" /></div>
+    <div class="row__cell row__cell--dark"><img src="images/logos/logo-Creattion.png" alt="" /></div>
+  </div>
+  <div class="row">
+    <div class="row__label">Danny&nbsp;Brassco</div>
+    <div class="row__cell row__cell--light"><img src="images/logos/logo-Danny-Brassco.png" alt="" /></div>
+    <div class="row__cell row__cell--dark"><img src="images/logos/logo-Danny-Brassco.png" alt="" /></div>
+  </div>
+  <div class="row">
+    <div class="row__label">Rollete&nbsp;Qaku</div>
+    <div class="row__cell row__cell--light"><img src="images/logos/logo-Rollete%20Qaku.png" alt="" /></div>
+    <div class="row__cell row__cell--dark"><img src="images/logos/logo-Rollete%20Qaku.png" alt="" /></div>
+  </div>
+  <div class="row">
+    <div class="row__label">Sabertooth</div>
+    <div class="row__cell row__cell--light"><img src="images/logos/logo-Sabertooth.png" alt="" /></div>
+    <div class="row__cell row__cell--dark"><img src="images/logos/logo-Sabertooth.png" alt="" /></div>
+  </div>
+  <div class="row">
+    <div class="row__label">Showclick</div>
+    <div class="row__cell row__cell--light"><img src="images/logos/logo-Showclick.png" alt="" /></div>
+    <div class="row__cell row__cell--dark"><img src="images/logos/logo-Showclick.png" alt="" /></div>
+  </div>
+  <div class="row">
+    <div class="row__label">Southern&nbsp;Aire</div>
+    <div class="row__cell row__cell--light"><img src="images/logos/logo-Southern%20Aire.png" alt="" /></div>
+    <div class="row__cell row__cell--dark"><img src="images/logos/logo-Southern%20Aire.png" alt="" /></div>
+  </div>
+  <div class="row">
+    <div class="row__label">Thesignature</div>
+    <div class="row__cell row__cell--light"><img src="images/logos/logo-Thesignature.png" alt="" /></div>
+    <div class="row__cell row__cell--dark"><img src="images/logos/logo-Thesignature.png" alt="" /></div>
+  </div>
+
+  <h2 style="font-size:1rem;font-weight:600;margin:2.5rem 0 0.5rem;letter-spacing:.05em;text-transform:uppercase;color:#666;">Existing tg-logo files</h2>
+
+  <div class="header-row">
+    <div></div>
+    <div>On white (scrolled)</div>
+    <div>On hero (inverted)</div>
+  </div>
+
+  <div class="row">
+    <div class="row__label">tg-logo-1</div>
+    <div class="row__cell row__cell--light"><img src="images/tg-logo-1.png" alt="" /></div>
+    <div class="row__cell row__cell--dark"><img src="images/tg-logo-1.png" alt="" /></div>
+  </div>
+  <div class="row">
+    <div class="row__label">tg-logo-2</div>
+    <div class="row__cell row__cell--light"><img src="images/tg-logo-2.png" alt="" /></div>
+    <div class="row__cell row__cell--dark"><img src="images/tg-logo-2.png" alt="" /></div>
+  </div>
+  <div class="row">
+    <div class="row__label">tg-logo-3</div>
+    <div class="row__cell row__cell--light"><img src="images/tg-logo-3.png" alt="" /></div>
+    <div class="row__cell row__cell--dark"><img src="images/tg-logo-3.png" alt="" /></div>
+  </div>
+  <div class="row">
+    <div class="row__label">tg-logo-5</div>
+    <div class="row__cell row__cell--light"><img src="images/tg-logo-5.png" alt="" /></div>
+    <div class="row__cell row__cell--dark"><img src="images/tg-logo-5.png" alt="" /></div>
+  </div>
+  <div class="row">
+    <div class="row__label">tg-logo-6</div>
+    <div class="row__cell row__cell--light"><img src="images/tg-logo-6.png" alt="" /></div>
+    <div class="row__cell row__cell--dark"><img src="images/tg-logo-6.png" alt="" /></div>
+  </div>
+  <div class="row">
+    <div class="row__label">tg-logo-7</div>
+    <div class="row__cell row__cell--light"><img src="images/tg-logo-7.png" alt="" /></div>
+    <div class="row__cell row__cell--dark"><img src="images/tg-logo-7.png" alt="" /></div>
+  </div>
+  <div class="row">
+    <div class="row__label">tg-logo-8</div>
+    <div class="row__cell row__cell--light"><img src="images/tg-logo-8.png" alt="" /></div>
+    <div class="row__cell row__cell--dark"><img src="images/tg-logo-8.png" alt="" /></div>
+  </div>
+  <div class="row">
+    <div class="row__label">tg-logo-10</div>
+    <div class="row__cell row__cell--light"><img src="images/tg-logo-10.png" alt="" /></div>
+    <div class="row__cell row__cell--dark"><img src="images/tg-logo-10.png" alt="" /></div>
+  </div>
+</body>
+</html>

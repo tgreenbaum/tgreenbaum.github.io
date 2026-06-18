@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hero background preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    background: #111;
+    color: #fff;
+  }
+  .page-label {
+    padding: 1.5rem 2rem 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+  .hero {
+    position: relative;
+    height: 70vh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    color: #ffffff;
+    text-align: center;
+    padding: 4rem 1.5rem;
+  }
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+  .hero__bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 9, 20, 0.55);
+  }
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+  }
+  .hero__avatar {
+    position: relative;
+    width: 144px; height: 144px;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.9);
+    margin: 0 auto 1.5rem;
+    background-image: url('images/avatar-2.jpg');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  .hero__avatar::before {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: rgba(255,255,255,0.6);
+    border-right-color: rgba(255,255,255,0.6);
+    transform: rotate(-45deg);
+    pointer-events: none;
+  }
+  .hero__name {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 1rem;
+  }
+  .hero__tagline {
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    max-width: 560px;
+    margin: 0 auto;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+  }
+</style>
+</head>
+<body>
+
+  <div class="page-label">Current — Iceland beach</div>
+  <section class="hero">
+    <div class="hero__bg" style="background-image: url('images/hero.jpg');"></div>
+    <div class="hero__content">
+      <div class="hero__avatar"></div>
+      <h1 class="hero__name">Todd Greenbaum</h1>
+      <p class="hero__tagline">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+    </div>
+  </section>
+
+  <div class="page-label">Option A — Austin skyline, color (boardwalk + sun rays)</div>
+  <section class="hero">
+    <div class="hero__bg" style="background-image: url('images/hero-austin-color.jpg');"></div>
+    <div class="hero__content">
+      <div class="hero__avatar"></div>
+      <h1 class="hero__name">Todd Greenbaum</h1>
+      <p class="hero__tagline">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+    </div>
+  </section>
+
+  <div class="page-label">Option B — Austin skyline, black &amp; white (long exposure)</div>
+  <section class="hero">
+    <div class="hero__bg" style="background-image: url('images/hero-austin-bw.jpg');"></div>
+    <div class="hero__content">
+      <div class="hero__avatar"></div>
+      <h1 class="hero__name">Todd Greenbaum</h1>
+      <p class="hero__tagline">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+    </div>
+  </section>
+
+</body>
+</html>

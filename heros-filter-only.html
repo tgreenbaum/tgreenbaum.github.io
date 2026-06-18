@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hero candidates — filtered images only</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    background: #0e0e10;
+    color: #fff;
+    padding: 1.5rem;
+  }
+  h1 { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.4rem; }
+  p.intro { color: rgba(255,255,255,0.6); margin-bottom: 1.5rem; font-size: 0.9rem; max-width: 720px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 1rem;
+  }
+  .card {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    border-radius: 10px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    filter: saturate(0.45) brightness(0.92) contrast(1.05);
+  }
+  .card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 9, 20, 0.55);
+  }
+  .card__label {
+    position: absolute;
+    bottom: 0.65rem;
+    left: 0.75rem;
+    z-index: 2;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(8px);
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+    font-family: ui-monospace, Menlo, monospace;
+  }
+</style>
+</head>
+<body>
+  <h1>Hero candidates — moody filter applied</h1>
+  <p class="intro">Each image with the same CSS treatment the hero applies: <code style="font-family:ui-monospace,monospace;font-size:0.8rem;color:#7ab;">saturate(0.45) brightness(0.92) contrast(1.05)</code> plus the dark blue overlay. No avatar or text — just the filtered photos so you can judge them as visuals.</p>
+  <div class="grid">
+    <div class="card" style="background-image: url('images/heros/hero-1.jpg');">
+      <div class="card__label">hero-1.jpg</div>
+    </div>
+    <div class="card" style="background-image: url('images/heros/hero-2.jpg');">
+      <div class="card__label">hero-2.jpg</div>
+    </div>
+    <div class="card" style="background-image: url('images/heros/hero-3.jpg');">
+      <div class="card__label">hero-3.jpg</div>
+    </div>
+    <div class="card" style="background-image: url('images/heros/hero-4.jpg');">
+      <div class="card__label">hero-4.jpg</div>
+    </div>
+    <div class="card" style="background-image: url('images/heros/hero-5.jpg');">
+      <div class="card__label">hero-5.jpg</div>
+    </div>
+    <div class="card" style="background-image: url('images/heros/hero-6.jpg');">
+      <div class="card__label">hero-6.jpg</div>
+    </div>
+    <div class="card" style="background-image: url('images/heros/hero-7.jpg');">
+      <div class="card__label">hero-7.jpg</div>
+    </div>
+    <div class="card" style="background-image: url('images/heros/hero-8.jpg');">
+      <div class="card__label">hero-8.jpg</div>
+    </div>
+    <div class="card" style="background-image: url('images/heros/hero-9.jpg');">
+      <div class="card__label">hero-9.jpg</div>
+    </div>
+    <div class="card" style="background-image: url('images/heros/hero-10.jpg');">
+      <div class="card__label">hero-10.jpg</div>
+    </div>
+    <div class="card" style="background-image: url('images/heros/hero-11.jpg');">
+      <div class="card__label">hero-11.jpg</div>
+    </div>
+    <div class="card" style="background-image: url('images/heros/hero-12.jpg');">
+      <div class="card__label">hero-12.jpg</div>
+    </div>
+    <div class="card" style="background-image: url('images/heros/hero-13.jpg');">
+      <div class="card__label">hero-13.jpg</div>
+    </div>
+    <div class="card" style="background-image: url('images/heros/hero-14.jpg');">
+      <div class="card__label">hero-14.jpg</div>
+    </div>
+    <div class="card" style="background-image: url('images/heros/hero-15.jpg');">
+      <div class="card__label">hero-15.jpg</div>
+    </div>
+    <div class="card" style="background-image: url('images/heros/hero-16.jpg');">
+      <div class="card__label">hero-16.jpg</div>
+    </div>
+    <div class="card" style="background-image: url('images/heros/hero-17.jpg');">
+      <div class="card__label">hero-17.jpg</div>
+    </div>
+    <div class="card" style="background-image: url('images/heros/hero-18.jpg');">
+      <div class="card__label">hero-18.jpg</div>
+    </div>
+    <div class="card" style="background-image: url('images/heros/hero-19.jpg');">
+      <div class="card__label">hero-19.jpg</div>
+    </div>
+  </div></body></html>

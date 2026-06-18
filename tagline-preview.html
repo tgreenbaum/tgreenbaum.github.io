@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Tagline treatments</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', system-ui, sans-serif; background: #0e0e10; color: #fff; }
+  .label {
+    padding: 1.25rem 2rem 0.4rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    font-family: ui-monospace, Menlo, monospace;
+  }
+  .hero {
+    position: relative;
+    height: 60vh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    text-align: center;
+    padding: 3rem 1.5rem;
+  }
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/heros/hero-6.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: saturate(0.45) brightness(0.92) contrast(1.05);
+    z-index: 0;
+  }
+  .hero__bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 9, 20, 0.55);
+  }
+  .hero__content { position: relative; z-index: 1; max-width: 760px; }
+  .hero__avatar {
+    position: relative;
+    width: 144px; height: 144px;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.9);
+    margin: 0 auto 1.5rem;
+    background-image: url('images/avatar-2.jpg');
+    background-size: cover; background-position: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    filter: saturate(0.75);
+  }
+  .name { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 1rem; }
+
+  /* === Treatments === */
+
+  /* A. Current — bold + shadow */
+  .t-current {
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    font-weight: 600;
+    max-width: 560px;
+    margin: 0 auto;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+  }
+
+  /* B. All-caps tracked label */
+  .t-caps {
+    font-size: clamp(0.78rem, 1vw, 0.92rem);
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 2;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+  }
+
+  /* C. Two-line: bold phrase + smaller pills */
+  .t-twoline__top {
+    font-size: clamp(1.1rem, 1.7vw, 1.35rem);
+    font-weight: 600;
+    margin-bottom: 0.85rem;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+  }
+  .t-twoline__chips {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .t-twoline__chips span {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.85rem;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+    background: rgba(255,255,255,0.05);
+  }
+
+  /* D. Pipe separator */
+  .t-pipes {
+    font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+  }
+  .t-pipes span { opacity: 0.6; margin: 0 0.65em; }
+
+  /* E. Italic serif (editorial) */
+  .t-italic {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.15rem, 1.7vw, 1.4rem);
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0;
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.5;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+  }
+
+  /* F. Glass-panel framed */
+  .t-glass {
+    display: inline-block;
+    padding: 1rem 1.5rem;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    backdrop-filter: blur(10px);
+    font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+    font-weight: 500;
+    max-width: 640px;
+  }
+
+  /* G. Decorative line above */
+  .t-line {
+    display: inline-block;
+    font-size: clamp(1rem, 1.55vw, 1.2rem);
+    font-weight: 500;
+    max-width: 580px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+  }
+  .t-line::before {
+    content: '';
+    display: block;
+    width: 56px;
+    height: 2px;
+    background: rgba(255,255,255,0.7);
+    margin: 0 auto 1.25rem;
+  }
+
+  /* H. Highlighted keywords */
+  .t-highlight {
+    font-size: clamp(1rem, 1.55vw, 1.2rem);
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 auto;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+    line-height: 1.5;
+  }
+  .t-highlight strong { font-weight: 700; }
+</style>
+</head>
+<body>
+
+  <div class="label">A — Current (bold + soft shadow)</div>
+  <section class="hero"><div class="hero__bg"></div><div class="hero__content">
+    <div class="hero__avatar"></div>
+    <div class="name">Todd Greenbaum</div>
+    <p class="t-current">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+  </div></section>
+
+  <div class="label">B — All-caps tracked label</div>
+  <section class="hero"><div class="hero__bg"></div><div class="hero__content">
+    <div class="hero__avatar"></div>
+    <div class="name">Todd Greenbaum</div>
+    <p class="t-caps">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+  </div></section>
+
+  <div class="label">C — Big phrase + category chips</div>
+  <section class="hero"><div class="hero__bg"></div><div class="hero__content">
+    <div class="hero__avatar"></div>
+    <div class="name">Todd Greenbaum</div>
+    <p class="t-twoline__top">Driving marketing success for enterprise, B2B, and SaaS companies.</p>
+    <div class="t-twoline__chips">
+      <span>Integrated</span><span>Performance</span><span>Content</span><span>Digital</span>
+    </div>
+  </div></section>
+
+  <div class="label">D — Pipe-separated categories</div>
+  <section class="hero"><div class="hero__bg"></div><div class="hero__content">
+    <div class="hero__avatar"></div>
+    <div class="name">Todd Greenbaum</div>
+    <p class="t-pipes">Integrated <span>·</span> Performance <span>·</span> Content <span>·</span> Digital Marketing</p>
+  </div></section>
+
+  <div class="label">E — Italic serif (editorial)</div>
+  <section class="hero"><div class="hero__bg"></div><div class="hero__content">
+    <div class="hero__avatar"></div>
+    <div class="name">Todd Greenbaum</div>
+    <p class="t-italic">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+  </div></section>
+
+  <div class="label">F — Glass panel pill</div>
+  <section class="hero"><div class="hero__bg"></div><div class="hero__content">
+    <div class="hero__avatar"></div>
+    <div class="name">Todd Greenbaum</div>
+    <p class="t-glass">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+  </div></section>
+
+  <div class="label">G — Decorative line above</div>
+  <section class="hero"><div class="hero__bg"></div><div class="hero__content">
+    <div class="hero__avatar"></div>
+    <div class="name">Todd Greenbaum</div>
+    <p class="t-line">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+  </div></section>
+
+  <div class="label">H — Highlighted keywords</div>
+  <section class="hero"><div class="hero__bg"></div><div class="hero__content">
+    <div class="hero__avatar"></div>
+    <div class="name">Todd Greenbaum</div>
+    <p class="t-highlight">Driver of <strong>integrated</strong>, <strong>performance</strong>, <strong>content</strong>, and <strong>digital marketing</strong> success for enterprise, B2B, SaaS, and other companies.</p>
+  </div></section>
+
+</body>
+</html>

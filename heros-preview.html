@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hero candidates — moody filter applied</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', system-ui, sans-serif; background: #111; color: #fff; }
+  .page-label { padding: 1.25rem 2rem 0.4rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.55); font-family: ui-monospace, Menlo, monospace; }
+  .hero { position: relative; height: 60vh; display: grid; place-items: center; overflow: hidden; color: #fff; text-align: center; padding: 3rem 1.5rem; }
+  .hero__bg { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 0; filter: saturate(0.45) brightness(0.92) contrast(1.05); }
+  .hero__bg::after { content: ''; position: absolute; inset: 0; background: rgba(8, 9, 20, 0.55); }
+  .hero__content { position: relative; z-index: 1; max-width: 720px; }
+  .hero__avatar { position: relative; width: 144px; height: 144px; border-radius: 50%; border: 3px solid rgba(255,255,255,0.9); margin: 0 auto 1.5rem; background-image: url('images/avatar-2.jpg'); background-size: cover; background-position: center; box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+  .hero__avatar::before { content: ''; position: absolute; inset: -12px; border-radius: 50%; border: 2px solid transparent; border-top-color: rgba(255,255,255,0.6); border-right-color: rgba(255,255,255,0.6); transform: rotate(-45deg); pointer-events: none; }
+  .hero__name { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 0.85rem; }
+  .hero__tagline { font-size: clamp(0.9rem, 1.4vw, 1.1rem); font-weight: 600; letter-spacing: 0.02em; max-width: 540px; margin: 0 auto; text-shadow: 0 2px 12px rgba(0,0,0,0.45); }
+  .intro { padding: 2rem; max-width: 760px; color: rgba(255,255,255,0.8); font-size: 0.95rem; line-height: 1.6; }
+</style>
+</head>
+<body>
+  <div class="intro">
+    <strong>Hero candidates — moody filter applied.</strong> Each photo in your <code>images/heros/</code> folder is rendered below as the actual hero would render: with the desaturate/dim/contrast CSS filter, the dark blue overlay, your avatar, and your name and tagline composited on top. Pick the filename you want and I'll wire it in.
+  </div>
+  <div class="page-label">hero-4.jpg</div>
+  <section class="hero">
+    <div class="hero__bg" style="background-image: url('images/heros/hero-4.jpg');"></div>
+    <div class="hero__content">
+      <div class="hero__avatar"></div>
+      <h1 class="hero__name">Todd Greenbaum</h1>
+      <p class="hero__tagline">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+    </div>
+  </section>
+  <div class="page-label">hero-5.jpg</div>
+  <section class="hero">
+    <div class="hero__bg" style="background-image: url('images/heros/hero-5.jpg');"></div>
+    <div class="hero__content">
+      <div class="hero__avatar"></div>
+      <h1 class="hero__name">Todd Greenbaum</h1>
+      <p class="hero__tagline">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+    </div>
+  </section>
+  <div class="page-label">hero-6.jpg</div>
+  <section class="hero">
+    <div class="hero__bg" style="background-image: url('images/heros/hero-6.jpg');"></div>
+    <div class="hero__content">
+      <div class="hero__avatar"></div>
+      <h1 class="hero__name">Todd Greenbaum</h1>
+      <p class="hero__tagline">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+    </div>
+  </section>
+  <div class="page-label">hero-7.jpg</div>
+  <section class="hero">
+    <div class="hero__bg" style="background-image: url('images/heros/hero-7.jpg');"></div>
+    <div class="hero__content">
+      <div class="hero__avatar"></div>
+      <h1 class="hero__name">Todd Greenbaum</h1>
+      <p class="hero__tagline">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+    </div>
+  </section>
+  <div class="page-label">hero-8.jpg</div>
+  <section class="hero">
+    <div class="hero__bg" style="background-image: url('images/heros/hero-8.jpg');"></div>
+    <div class="hero__content">
+      <div class="hero__avatar"></div>
+      <h1 class="hero__name">Todd Greenbaum</h1>
+      <p class="hero__tagline">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+    </div>
+  </section>
+  <div class="page-label">hero-9.jpg</div>
+  <section class="hero">
+    <div class="hero__bg" style="background-image: url('images/heros/hero-9.jpg');"></div>
+    <div class="hero__content">
+      <div class="hero__avatar"></div>
+      <h1 class="hero__name">Todd Greenbaum</h1>
+      <p class="hero__tagline">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+    </div>
+  </section>
+  <div class="page-label">hero-10.jpg</div>
+  <section class="hero">
+    <div class="hero__bg" style="background-image: url('images/heros/hero-10.jpg');"></div>
+    <div class="hero__content">
+      <div class="hero__avatar"></div>
+      <h1 class="hero__name">Todd Greenbaum</h1>
+      <p class="hero__tagline">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+    </div>
+  </section>
+  <div class="page-label">hero-11.jpg</div>
+  <section class="hero">
+    <div class="hero__bg" style="background-image: url('images/heros/hero-11.jpg');"></div>
+    <div class="hero__content">
+      <div class="hero__avatar"></div>
+      <h1 class="hero__name">Todd Greenbaum</h1>
+      <p class="hero__tagline">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+    </div>
+  </section>
+  <div class="page-label">hero-12.jpg</div>
+  <section class="hero">
+    <div class="hero__bg" style="background-image: url('images/heros/hero-12.jpg');"></div>
+    <div class="hero__content">
+      <div class="hero__avatar"></div>
+      <h1 class="hero__name">Todd Greenbaum</h1>
+      <p class="hero__tagline">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+    </div>
+  </section>
+  <div class="page-label">hero-13.jpg</div>
+  <section class="hero">
+    <div class="hero__bg" style="background-image: url('images/heros/hero-13.jpg');"></div>
+    <div class="hero__content">
+      <div class="hero__avatar"></div>
+      <h1 class="hero__name">Todd Greenbaum</h1>
+      <p class="hero__tagline">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+    </div>
+  </section>
+  <div class="page-label">hero-14.jpg</div>
+  <section class="hero">
+    <div class="hero__bg" style="background-image: url('images/heros/hero-14.jpg');"></div>
+    <div class="hero__content">
+      <div class="hero__avatar"></div>
+      <h1 class="hero__name">Todd Greenbaum</h1>
+      <p class="hero__tagline">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+    </div>
+  </section>
+  <div class="page-label">hero-15.jpg</div>
+  <section class="hero">
+    <div class="hero__bg" style="background-image: url('images/heros/hero-15.jpg');"></div>
+    <div class="hero__content">
+      <div class="hero__avatar"></div>
+      <h1 class="hero__name">Todd Greenbaum</h1>
+      <p class="hero__tagline">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+    </div>
+  </section>
+  <div class="page-label">hero-16.jpg</div>
+  <section class="hero">
+    <div class="hero__bg" style="background-image: url('images/heros/hero-16.jpg');"></div>
+    <div class="hero__content">
+      <div class="hero__avatar"></div>
+      <h1 class="hero__name">Todd Greenbaum</h1>
+      <p class="hero__tagline">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+    </div>
+  </section>
+  <div class="page-label">hero-17.jpg</div>
+  <section class="hero">
+    <div class="hero__bg" style="background-image: url('images/heros/hero-17.jpg');"></div>
+    <div class="hero__content">
+      <div class="hero__avatar"></div>
+      <h1 class="hero__name">Todd Greenbaum</h1>
+      <p class="hero__tagline">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+    </div>
+  </section>
+  <div class="page-label">hero-18.psd.jpg</div>
+  <section class="hero">
+    <div class="hero__bg" style="background-image: url('images/heros/hero-18.psd.jpg');"></div>
+    <div class="hero__content">
+      <div class="hero__avatar"></div>
+      <h1 class="hero__name">Todd Greenbaum</h1>
+      <p class="hero__tagline">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+    </div>
+  </section>
+  <div class="page-label">hero-19.jpg</div>
+  <section class="hero">
+    <div class="hero__bg" style="background-image: url('images/heros/hero-19.jpg');"></div>
+    <div class="hero__content">
+      <div class="hero__avatar"></div>
+      <h1 class="hero__name">Todd Greenbaum</h1>
+      <p class="hero__tagline">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+    </div>
+  </section>
+  <div class="page-label">hero-20.jpg</div>
+  <section class="hero">
+    <div class="hero__bg" style="background-image: url('images/heros/hero-20.jpg');"></div>
+    <div class="hero__content">
+      <div class="hero__avatar"></div>
+      <h1 class="hero__name">Todd Greenbaum</h1>
+      <p class="hero__tagline">Driver of integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</p>
+    </div>
+  </section>
+</body></html>

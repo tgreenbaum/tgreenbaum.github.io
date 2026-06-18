@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Profile picture — design treatments</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, system-ui, sans-serif;
+    background: #111;
+    color: #fff;
+    padding: 2rem;
+  }
+  h1 { font-size: 1.4rem; font-weight: 600; margin-bottom: 0.4rem; }
+  p.intro { color: rgba(255,255,255,0.6); margin-bottom: 2rem; max-width: 640px; font-size: 0.95rem; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  .tile {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background-image: url('images/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 16px;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+  }
+  .tile::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 9, 20, 0.55);
+  }
+  .tile__label {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    z-index: 5;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(8px);
+    padding: 0.4rem 0.65rem;
+    border-radius: 6px;
+  }
+
+  /* Common avatar base */
+  .av {
+    position: relative;
+    z-index: 2;
+    width: 144px;
+    height: 144px;
+    border-radius: 50%;
+    background-image: url('images/avatar-2.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* 1. Current — white border + shadow */
+  .av-current { border: 3px solid rgba(255,255,255,0.9); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+
+  /* 2. Double ring */
+  .av-double { box-shadow: 0 0 0 3px #fff, 0 0 0 6px transparent, 0 0 0 8px rgba(255,255,255,0.5), 0 8px 32px rgba(0,0,0,0.3); }
+
+  /* 3. Soft glow */
+  .av-glow { border: 3px solid rgba(255,255,255,0.9); box-shadow: 0 0 0 1px rgba(255,255,255,0.2), 0 0 40px 8px rgba(255,255,255,0.15), 0 8px 32px rgba(0,0,0,0.3); }
+
+  /* 4. Rotating gradient ring */
+  .av-rotating {
+    border: 3px solid transparent;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  .av-rotating::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #ff7a59, #4285F4, #FF492C, #ff7a59);
+    z-index: -1;
+    animation: spin 6s linear infinite;
+  }
+  .av-rotating::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background-image: url('images/avatar-2.jpg');
+    background-size: cover;
+    background-position: center;
+    border: 3px solid rgba(0,0,0,0.4);
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* 5. Decorative arc */
+  .av-arc-wrap {
+    position: relative;
+    width: 168px;
+    height: 168px;
+    z-index: 2;
+  }
+  .av-arc-wrap .av {
+    position: absolute;
+    inset: 12px;
+    width: auto;
+    height: auto;
+    border: 3px solid rgba(255,255,255,0.9);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  .av-arc-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: rgba(255,255,255,0.6);
+    border-right-color: rgba(255,255,255,0.6);
+    transform: rotate(-45deg);
+  }
+
+  /* 6. Status accent dot */
+  .av-dot-wrap { position: relative; z-index: 2; }
+  .av-dot-wrap .av { border: 3px solid rgba(255,255,255,0.9); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+  .av-dot-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #22c55e;
+    border: 3px solid #0e0e10;
+  }
+
+  /* 7. Offset secondary shape behind */
+  .av-offset-wrap { position: relative; z-index: 2; width: 144px; height: 144px; }
+  .av-offset-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.6);
+    transform: translate(14px, 14px);
+  }
+  .av-offset-wrap .av { border: 3px solid rgba(255,255,255,0.9); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+
+  /* 8. Hexagon clip */
+  .av-hex {
+    width: 160px; height: 160px;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background-image: url('images/avatar-2.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 0;
+  }
+  .av-hex-wrap {
+    position: relative;
+    z-index: 2;
+    padding: 6px;
+    background: rgba(255,255,255,0.9);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+
+  /* 9. Dashed border */
+  .av-dashed { border: 2px dashed rgba(255,255,255,0.85); padding: 6px; background: transparent; }
+  .av-dashed::after {
+    content: '';
+    display: block;
+    width: 144px;
+    height: 144px;
+    border-radius: 50%;
+    background-image: url('images/avatar-2.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  .av-dashed { width: 160px; height: 160px; border-radius: 50%; display: grid; place-items: center; position: relative; z-index: 2; }
+
+  /* 10. Inner shadow inset */
+  .av-inset {
+    border: 3px solid rgba(255,255,255,0.9);
+    position: relative;
+    z-index: 2;
+  }
+  .av-inset::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    box-shadow: inset 0 0 30px 4px rgba(0,0,0,0.5);
+  }
+
+  /* 11. Corner brackets */
+  .av-brackets-wrap { position: relative; z-index: 2; width: 200px; height: 200px; display: grid; place-items: center; }
+  .av-brackets-wrap .av { border: 3px solid rgba(255,255,255,0.9); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+  .br { position: absolute; width: 28px; height: 28px; border: 2px solid rgba(255,255,255,0.8); }
+  .br-tl { top: 0; left: 0; border-right: none; border-bottom: none; }
+  .br-tr { top: 0; right: 0; border-left: none; border-bottom: none; }
+  .br-bl { bottom: 0; left: 0; border-right: none; border-top: none; }
+  .br-br { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+  /* 12. Outline-only ring with photo */
+  .av-thick-ring { border: 6px solid #fff; box-shadow: 0 0 0 1px rgba(255,255,255,0.3), 0 8px 32px rgba(0,0,0,0.3); }
+</style>
+</head>
+<body>
+  <h1>Profile picture treatments</h1>
+  <p class="intro">Twelve different design treatments for the hero profile picture, all rendered over your actual hero image with the dark overlay. Each tile shows what it would look like in context. Tell me which number you'd like and I'll wire it into the site.</p>
+
+  <div class="grid">
+    <div class="tile"><div class="av av-current"></div><div class="tile__label">1 — Current (white border + shadow)</div></div>
+    <div class="tile"><div class="av av-double"></div><div class="tile__label">2 — Double ring</div></div>
+    <div class="tile"><div class="av av-glow"></div><div class="tile__label">3 — Soft glow halo</div></div>
+    <div class="tile"><div class="av av-rotating"></div><div class="tile__label">4 — Rotating gradient ring</div></div>
+    <div class="tile"><div class="av-arc-wrap"><div class="av"></div></div><div class="tile__label">5 — Decorative arc accent</div></div>
+    <div class="tile"><div class="av-dot-wrap"><div class="av"></div></div><div class="tile__label">6 — Status accent dot</div></div>
+    <div class="tile"><div class="av-offset-wrap"><div class="av"></div></div><div class="tile__label">7 — Offset outline behind</div></div>
+    <div class="tile"><div class="av-hex-wrap"><div class="av-hex"></div></div><div class="tile__label">8 — Hexagon clip</div></div>
+    <div class="tile"><div class="av-dashed"></div><div class="tile__label">9 — Dashed outer ring</div></div>
+    <div class="tile"><div class="av av-inset"></div><div class="tile__label">10 — Inset vignette</div></div>
+    <div class="tile"><div class="av-brackets-wrap"><div class="br br-tl"></div><div class="br br-tr"></div><div class="br br-bl"></div><div class="br br-br"></div><div class="av"></div></div><div class="tile__label">11 — Corner brackets</div></div>
+    <div class="tile"><div class="av av-thick-ring"></div><div class="tile__label">12 — Thick white ring</div></div>
+  </div>
+</body>
+</html>
