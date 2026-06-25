@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hero animation treatments</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', system-ui, sans-serif; background: #0e0e10; color: #fff; }
+  .label {
+    padding: 1.5rem 2rem 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    font-family: ui-monospace, Menlo, monospace;
+  }
+  .hero {
+    position: relative;
+    height: 75vh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    text-align: center;
+    padding: 3rem 1.5rem;
+  }
+  .bg {
+    position: absolute;
+    inset: 0;
+    background: url('images/heros/hero-6.jpg') center/cover no-repeat;
+    filter: saturate(0.45) brightness(0.92) contrast(1.05);
+    z-index: 0;
+  }
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 9, 20, 0.55);
+    z-index: 1;
+  }
+  .content { position: relative; z-index: 2; max-width: 720px; }
+  .avatar {
+    position: relative;
+    width: 144px; height: 144px;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.9);
+    margin: 0 auto 1.5rem;
+    background: url('images/avatar-2.jpg') center/cover;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    filter: saturate(0.75);
+  }
+  .avatar::before {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: rgba(255,255,255,0.6);
+    border-right-color: rgba(255,255,255,0.6);
+    transform: rotate(-45deg);
+    pointer-events: none;
+  }
+  .name { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 1rem; }
+  .tagline { font-size: clamp(1rem, 1.5vw, 1.15rem); font-weight: 600; max-width: 560px; margin: 0 auto; text-shadow: 0 2px 12px rgba(0,0,0,0.45); }
+
+  /* ============ 1. KEN BURNS PAN + ZOOM ============ */
+  .a1 .bg {
+    animation: kenburns 24s ease-in-out infinite alternate;
+  }
+  @keyframes kenburns {
+    0% { transform: scale(1.05) translate(-1.5%, 1%); }
+    100% { transform: scale(1.18) translate(2%, -1.5%); }
+  }
+
+  /* ============ 2. ROTATING ARC ============ */
+  .a2 .avatar::before {
+    animation: arcspin 14s linear infinite;
+  }
+  @keyframes arcspin {
+    from { transform: rotate(-45deg); }
+    to   { transform: rotate(315deg); }
+  }
+
+  /* ============ 3. FLOATING DUST PARTICLES ============ */
+  .a3 .particles {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .a3 .particle {
+    position: absolute;
+    bottom: -10px;
+    width: 3px;
+    height: 3px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    animation: float linear infinite;
+  }
+  @keyframes float {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(-95vh) translateX(20px); opacity: 0; }
+  }
+
+  /* ============ 4. LETTER-BY-LETTER NAME REVEAL ============ */
+  .a4 .name span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: letterIn 0.5s ease forwards;
+  }
+  @keyframes letterIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============ 5. CURSOR PARALLAX ============ */
+  /* JS-driven; .a5 .content transforms via mouse position */
+
+  /* ============ 6. COLOR-SHIFTING OVERLAY ============ */
+  .a6 .overlay {
+    animation: colorShift 30s ease-in-out infinite alternate;
+  }
+  @keyframes colorShift {
+    0%   { background: rgba(8, 9, 20, 0.55); }
+    33%  { background: rgba(8, 14, 35, 0.55); }
+    66%  { background: rgba(16, 8, 28, 0.55); }
+    100% { background: rgba(8, 18, 28, 0.55); }
+  }
+
+  /* ============ 7. COMBO: Ken Burns + Rotating Arc + Particles ============ */
+  .a7 .bg { animation: kenburns 24s ease-in-out infinite alternate; }
+  .a7 .avatar::before { animation: arcspin 14s linear infinite; }
+  .a7 .particles { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+  .a7 .particle {
+    position: absolute;
+    bottom: -10px;
+    width: 3px;
+    height: 3px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    animation: float linear infinite;
+  }
+
+  .intro { padding: 2.5rem 2rem 0; max-width: 800px; color: rgba(255,255,255,0.78); font-size: 0.95rem; line-height: 1.6; }
+  .intro strong { color: #fff; }
+</style>
+</head>
+<body>
+
+  <div class="intro">
+    <strong>Hero animation treatments.</strong> Seven options shown below, each rendered as a real hero. Scroll slowly and let each one play for a few seconds to feel the rhythm. Tell me which numbers you want and I'll wire them into the live site.
+  </div>
+
+  <div class="label">1 — Ken Burns pan + zoom (continuous, atmospheric)</div>
+  <section class="hero a1">
+    <div class="bg"></div>
+    <div class="overlay"></div>
+    <div class="content">
+      <div class="avatar"></div>
+      <div class="name">Todd Greenbaum</div>
+      <p class="tagline">Driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies for 15+ years.</p>
+    </div>
+  </section>
+
+  <div class="label">2 — Rotating arc behind avatar (subtle, contextual)</div>
+  <section class="hero a2">
+    <div class="bg"></div>
+    <div class="overlay"></div>
+    <div class="content">
+      <div class="avatar"></div>
+      <div class="name">Todd Greenbaum</div>
+      <p class="tagline">Driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies for 15+ years.</p>
+    </div>
+  </section>
+
+  <div class="label">3 — Floating dust particles (atmospheric)</div>
+  <section class="hero a3">
+    <div class="bg"></div>
+    <div class="overlay"></div>
+    <div class="particles" id="p3"></div>
+    <div class="content">
+      <div class="avatar"></div>
+      <div class="name">Todd Greenbaum</div>
+      <p class="tagline">Driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies for 15+ years.</p>
+    </div>
+  </section>
+
+  <div class="label">4 — Letter-by-letter name reveal (one-time entrance)</div>
+  <section class="hero a4">
+    <div class="bg"></div>
+    <div class="overlay"></div>
+    <div class="content">
+      <div class="avatar"></div>
+      <div class="name" id="name4">Todd Greenbaum</div>
+      <p class="tagline">Driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies for 15+ years.</p>
+    </div>
+  </section>
+
+  <div class="label">5 — Cursor parallax (interactive, move your mouse over this section)</div>
+  <section class="hero a5" id="hero5">
+    <div class="bg" id="bg5"></div>
+    <div class="overlay"></div>
+    <div class="content" id="content5">
+      <div class="avatar"></div>
+      <div class="name">Todd Greenbaum</div>
+      <p class="tagline">Driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies for 15+ years.</p>
+    </div>
+  </section>
+
+  <div class="label">6 — Color-shifting overlay (very subtle hue drift)</div>
+  <section class="hero a6">
+    <div class="bg"></div>
+    <div class="overlay"></div>
+    <div class="content">
+      <div class="avatar"></div>
+      <div class="name">Todd Greenbaum</div>
+      <p class="tagline">Driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies for 15+ years.</p>
+    </div>
+  </section>
+
+  <div class="label">7 — Combo: Ken Burns + rotating arc + particles + letter reveal (my recommended mix)</div>
+  <section class="hero a7">
+    <div class="bg"></div>
+    <div class="overlay"></div>
+    <div class="particles" id="p7"></div>
+    <div class="content">
+      <div class="avatar"></div>
+      <div class="name a4__name" id="name7">Todd Greenbaum</div>
+      <p class="tagline">Driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies for 15+ years.</p>
+    </div>
+  </section>
+
+<script>
+  // --- 1. Generate particles for option 3 and option 7 ---
+  function spawnParticles(containerId, count) {
+    const c = document.getElementById(containerId);
+    if (!c) return;
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = (Math.random() * 100) + '%';
+      const duration = 12 + Math.random() * 18;
+      const delay = -Math.random() * duration; // start mid-animation
+      p.style.animationDuration = duration + 's';
+      p.style.animationDelay = delay + 's';
+      p.style.opacity = 0.3 + Math.random() * 0.5;
+      p.style.width = p.style.height = (1.5 + Math.random() * 2.5) + 'px';
+      c.appendChild(p);
+    }
+  }
+  spawnParticles('p3', 30);
+  spawnParticles('p7', 30);
+
+  // --- 2. Letter-by-letter name reveal for option 4 and 7 ---
+  function splitName(elId, startDelay = 0) {
+    const el = document.getElementById(elId);
+    if (!el) return;
+    const text = el.textContent;
+    el.textContent = '';
+    [...text].forEach((char, i) => {
+      const span = document.createElement('span');
+      span.textContent = char === ' ' ? ' ' : char;
+      span.style.animationDelay = (startDelay + i * 0.05) + 's';
+      el.appendChild(span);
+    });
+  }
+  splitName('name4');
+  splitName('name7', 0.2);
+
+  // --- 3. Cursor parallax for option 5 ---
+  const hero5 = document.getElementById('hero5');
+  const bg5 = document.getElementById('bg5');
+  const content5 = document.getElementById('content5');
+  if (hero5) {
+    hero5.addEventListener('mousemove', e => {
+      const r = hero5.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      bg5.style.transform = `scale(1.08) translate(${x * -16}px, ${y * -16}px)`;
+      content5.style.transform = `translate(${x * 12}px, ${y * 12}px)`;
+    });
+    hero5.addEventListener('mouseleave', () => {
+      bg5.style.transform = 'scale(1.08)';
+      content5.style.transform = '';
+    });
+    bg5.style.transition = 'transform 0.4s ease-out';
+    content5.style.transition = 'transform 0.4s ease-out';
+  }
+</script>
+
+</body>
+</html>

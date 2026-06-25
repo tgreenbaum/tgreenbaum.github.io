@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Tagline font pairing preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500;1,9..144,700&family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,500;0,700;1,500;1,700&family=Caveat:wght@500;700&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500;1,700&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', system-ui, sans-serif; background: #0e0e10; color: #fff; }
+  .label {
+    padding: 1.5rem 2rem 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    font-family: ui-monospace, Menlo, monospace;
+  }
+  .hero {
+    position: relative;
+    height: 60vh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    text-align: center;
+    padding: 3rem 1.5rem;
+  }
+  .bg {
+    position: absolute; inset: 0;
+    background: url('images/heros/hero-6.jpg') center/cover no-repeat;
+    filter: saturate(0.45) brightness(0.92) contrast(1.05);
+  }
+  .bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(8, 9, 20, 0.55);
+  }
+  .content { position: relative; z-index: 1; max-width: 760px; }
+  .avatar {
+    position: relative;
+    width: 144px; height: 144px;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.9);
+    margin: 0 auto 1.5rem;
+    background: url('images/avatar-2.jpg') center/cover;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    filter: saturate(0.75);
+  }
+  .avatar::before {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: rgba(255,255,255,0.6);
+    border-right-color: rgba(255,255,255,0.6);
+    transform: rotate(-45deg);
+    pointer-events: none;
+  }
+  .name {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 2.5rem;
+  }
+
+  /* === base tagline === */
+  .tagline {
+    font-size: clamp(0.85rem, 1.35vw, 1.05rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    max-width: 620px;
+    margin: 0 auto;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+    line-height: 1.4;
+  }
+  .lead {
+    display: block;
+    font-weight: 700;
+    font-size: 1.15em;
+    color: #f5b78a;
+    line-height: 1.25;
+    margin-bottom: 0.4rem;
+  }
+  .rest {
+    display: block;
+    font-weight: 500;
+    opacity: 0.88;
+  }
+
+  /* === FONT VARIATIONS === */
+  /* A: all Montserrat (current) — no override needed */
+
+  /* B: Playfair Display (classic serif) — both lines */
+  .b .lead, .b .rest { font-family: 'Playfair Display', serif; }
+  .b .lead { font-weight: 700; font-size: 1.35em; letter-spacing: -0.01em; }
+  .b .rest { font-weight: 500; font-style: italic; }
+
+  /* C: Playfair Display lead + Montserrat rest (mixed) */
+  .c .lead { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.4em; letter-spacing: -0.01em; }
+  /* .c .rest stays Montserrat default */
+
+  /* D: Fraunces (modern serif with character) — both lines */
+  .d .lead, .d .rest { font-family: 'Fraunces', serif; }
+  .d .lead { font-weight: 700; font-size: 1.35em; letter-spacing: -0.01em; }
+  .d .rest { font-weight: 500; }
+
+  /* E: Fraunces italic lead + Montserrat rest */
+  .e .lead { font-family: 'Fraunces', serif; font-style: italic; font-weight: 600; font-size: 1.4em; letter-spacing: 0; }
+
+  /* F: DM Serif Display lead (very editorial) + Montserrat rest */
+  .f .lead { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 1.45em; letter-spacing: -0.01em; }
+
+  /* G: Lora italic lead + Montserrat rest */
+  .g .lead { font-family: 'Lora', serif; font-weight: 600; font-style: italic; font-size: 1.3em; }
+
+  /* H: Cormorant Garamond italic lead + Montserrat rest */
+  .h .lead { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-style: italic; font-size: 1.55em; letter-spacing: 0; }
+
+  /* I: Caveat (handwritten) lead + Montserrat rest */
+  .i .lead { font-family: 'Caveat', cursive; font-weight: 700; font-size: 1.85em; line-height: 1.1; color: #ffd9a0; }
+
+  .intro { padding: 2.5rem 2rem 0; max-width: 800px; color: rgba(255,255,255,0.78); font-size: 0.95rem; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+  <div class="intro">
+    <strong>Font pairings for the tagline lines.</strong> Each option below pairs Montserrat (your site font) with a complementary font on the tagline. Some apply the new font to just the lead; others to both lines. Avatar, name, and color are kept constant so only the font is changing.
+  </div>
+
+  <div class="label">A — All Montserrat (current)</div>
+  <section class="hero"><div class="bg"></div><div class="content">
+    <div class="avatar"></div><div class="name">Todd Greenbaum</div>
+    <p class="tagline">
+      <span class="lead">Turning marketing investment into measurable growth.</span>
+      <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+    </p>
+  </div></section>
+
+  <div class="label">B — Playfair Display, both lines (classic editorial)</div>
+  <section class="hero b"><div class="bg"></div><div class="content">
+    <div class="avatar"></div><div class="name">Todd Greenbaum</div>
+    <p class="tagline">
+      <span class="lead">Turning marketing investment into measurable growth.</span>
+      <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+    </p>
+  </div></section>
+
+  <div class="label">C — Playfair Display lead + Montserrat rest (mixed)</div>
+  <section class="hero c"><div class="bg"></div><div class="content">
+    <div class="avatar"></div><div class="name">Todd Greenbaum</div>
+    <p class="tagline">
+      <span class="lead">Turning marketing investment into measurable growth.</span>
+      <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+    </p>
+  </div></section>
+
+  <div class="label">D — Fraunces, both lines (modern serif with character)</div>
+  <section class="hero d"><div class="bg"></div><div class="content">
+    <div class="avatar"></div><div class="name">Todd Greenbaum</div>
+    <p class="tagline">
+      <span class="lead">Turning marketing investment into measurable growth.</span>
+      <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+    </p>
+  </div></section>
+
+  <div class="label">E — Fraunces italic lead + Montserrat rest (warm, personal)</div>
+  <section class="hero e"><div class="bg"></div><div class="content">
+    <div class="avatar"></div><div class="name">Todd Greenbaum</div>
+    <p class="tagline">
+      <span class="lead">Turning marketing investment into measurable growth.</span>
+      <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+    </p>
+  </div></section>
+
+  <div class="label">F — DM Serif Display lead + Montserrat rest (high-contrast editorial)</div>
+  <section class="hero f"><div class="bg"></div><div class="content">
+    <div class="avatar"></div><div class="name">Todd Greenbaum</div>
+    <p class="tagline">
+      <span class="lead">Turning marketing investment into measurable growth.</span>
+      <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+    </p>
+  </div></section>
+
+  <div class="label">G — Lora italic lead + Montserrat rest (softer serif)</div>
+  <section class="hero g"><div class="bg"></div><div class="content">
+    <div class="avatar"></div><div class="name">Todd Greenbaum</div>
+    <p class="tagline">
+      <span class="lead">Turning marketing investment into measurable growth.</span>
+      <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+    </p>
+  </div></section>
+
+  <div class="label">H — Cormorant Garamond italic lead + Montserrat rest (elegant, refined)</div>
+  <section class="hero h"><div class="bg"></div><div class="content">
+    <div class="avatar"></div><div class="name">Todd Greenbaum</div>
+    <p class="tagline">
+      <span class="lead">Turning marketing investment into measurable growth.</span>
+      <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+    </p>
+  </div></section>
+
+  <div class="label">I — Caveat handwritten lead + Montserrat rest (most personal/casual)</div>
+  <section class="hero i"><div class="bg"></div><div class="content">
+    <div class="avatar"></div><div class="name">Todd Greenbaum</div>
+    <p class="tagline">
+      <span class="lead">Turning marketing investment into measurable growth.</span>
+      <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+    </p>
+  </div></section>
+
+</body>
+</html>

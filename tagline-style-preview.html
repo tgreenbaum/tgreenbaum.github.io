@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Tagline split-style preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', system-ui, sans-serif; background: #0e0e10; color: #fff; }
+  .label {
+    padding: 1.5rem 2rem 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    font-family: ui-monospace, Menlo, monospace;
+  }
+  .hero {
+    position: relative;
+    height: 65vh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    text-align: center;
+    padding: 3rem 1.5rem;
+  }
+  .bg {
+    position: absolute; inset: 0;
+    background: url('images/heros/hero-6.jpg') center/cover no-repeat;
+    filter: saturate(0.45) brightness(0.92) contrast(1.05);
+  }
+  .bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(8, 9, 20, 0.55);
+  }
+  .content { position: relative; z-index: 1; max-width: 760px; }
+  .avatar {
+    position: relative;
+    width: 144px; height: 144px;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.9);
+    margin: 0 auto 1.5rem;
+    background: url('images/avatar-2.jpg') center/cover;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    filter: saturate(0.75);
+  }
+  .avatar::before {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: rgba(255,255,255,0.6);
+    border-right-color: rgba(255,255,255,0.6);
+    transform: rotate(-45deg);
+    pointer-events: none;
+  }
+  .name { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 1rem; }
+
+  /* === base tagline === */
+  .tagline {
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    font-weight: 600;
+    max-width: 600px;
+    margin: 0 auto;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+  }
+
+  /* ===== Option A: current — single line, both same ===== */
+  .a .lead, .a .rest { font-weight: 600; }
+
+  /* ===== Option B: lead BOLD + LARGER, rest normal ===== */
+  .b { line-height: 1.4; }
+  .b .lead { font-weight: 700; font-size: 1.4em; display: block; margin-bottom: 0.35rem; }
+  .b .rest { font-weight: 500; opacity: 0.85; }
+
+  /* ===== Option C: lead its own bigger line, rest small below ===== */
+  .c .lead {
+    display: block;
+    font-size: 1.55em;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    margin-bottom: 0.7rem;
+    line-height: 1.2;
+  }
+  .c .rest {
+    display: block;
+    font-size: 0.85em;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0.75;
+  }
+  .c .em { display: none; }
+
+  /* ===== Option D: lead warm-accent color, rest white ===== */
+  .d .lead { color: #f5b78a; font-weight: 700; }
+  .d .rest { font-weight: 500; opacity: 0.9; }
+
+  /* ===== Option E: lead with subtle gold/amber accent, two lines, decorative rule between ===== */
+  .e .lead {
+    display: block;
+    font-size: 1.45em;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.9rem;
+    line-height: 1.2;
+  }
+  .e .em { display: none; }
+  .e .rest {
+    display: block;
+    font-size: 0.85em;
+    font-weight: 500;
+    opacity: 0.8;
+    letter-spacing: 0.04em;
+  }
+  .e .rest::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: rgba(255,255,255,0.55);
+    margin: 0 auto 0.9rem;
+  }
+
+  /* ===== Option F: lead heavy weight, rest light weight, same line ===== */
+  .f .lead { font-weight: 800; }
+  .f .rest { font-weight: 300; opacity: 0.85; }
+
+  /* ===== Option G: lead big serif-ish (Montserrat 700 italic), rest small caps below ===== */
+  .g .lead {
+    display: block;
+    font-size: 1.5em;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.2;
+    margin-bottom: 0.6rem;
+  }
+  .g .em { display: none; }
+  .g .rest {
+    display: block;
+    font-size: 0.8em;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  /* ===== Option H: lead larger and white, rest smaller and muted, same line, em-dash kept ===== */
+  .h .lead { font-size: 1.15em; font-weight: 700; }
+  .h .em { opacity: 0.5; margin: 0 0.3em; }
+  .h .rest { font-weight: 500; opacity: 0.75; }
+
+  .intro { padding: 2.5rem 2rem 0; max-width: 800px; color: rgba(255,255,255,0.78); font-size: 0.95rem; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+  <div class="intro">
+    <strong>Tagline split-style options.</strong> Eight variations of the same two phrases — "Turning marketing investment into measurable growth" and the 15+ years phrase — with different weights, colors, and layouts. Pick a letter (or describe what you want) and I'll wire it in.
+  </div>
+
+  <div class="label">A — Current (one line, same weight, em-dash)</div>
+  <section class="hero">
+    <div class="bg"></div>
+    <div class="content">
+      <div class="avatar"></div>
+      <div class="name">Todd Greenbaum</div>
+      <p class="tagline a">
+        <span class="lead">Turning marketing investment into measurable growth</span><span class="em"> — </span><span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+      </p>
+    </div>
+  </section>
+
+  <div class="label">B — Lead is bolder + larger on its own line, rest below (same color)</div>
+  <section class="hero">
+    <div class="bg"></div>
+    <div class="content">
+      <div class="avatar"></div>
+      <div class="name">Todd Greenbaum</div>
+      <p class="tagline b">
+        <span class="lead">Turning marketing investment into measurable growth.</span>
+        <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+      </p>
+    </div>
+  </section>
+
+  <div class="label">C — Lead is the headline, rest is small-caps kicker below</div>
+  <section class="hero">
+    <div class="bg"></div>
+    <div class="content">
+      <div class="avatar"></div>
+      <div class="name">Todd Greenbaum</div>
+      <p class="tagline c">
+        <span class="lead">Turning marketing investment into measurable growth.</span>
+        <span class="em"></span>
+        <span class="rest">15+ years across integrated, performance, content, and digital marketing for B2B and SaaS.</span>
+      </p>
+    </div>
+  </section>
+
+  <div class="label">D — Lead in warm amber, rest in white (same line, em-dash)</div>
+  <section class="hero">
+    <div class="bg"></div>
+    <div class="content">
+      <div class="avatar"></div>
+      <div class="name">Todd Greenbaum</div>
+      <p class="tagline d">
+        <span class="lead">Turning marketing investment into measurable growth</span> — <span class="rest">15+ years driving integrated, performance, content, and digital marketing for enterprise, B2B, SaaS, and other companies.</span>
+      </p>
+    </div>
+  </section>
+
+  <div class="label">E — Stacked, with a small accent rule between</div>
+  <section class="hero">
+    <div class="bg"></div>
+    <div class="content">
+      <div class="avatar"></div>
+      <div class="name">Todd Greenbaum</div>
+      <p class="tagline e">
+        <span class="lead">Turning marketing investment into measurable growth.</span>
+        <span class="em"></span>
+        <span class="rest">15+ years driving integrated, performance, content, and digital marketing for enterprise, B2B, SaaS, and other companies.</span>
+      </p>
+    </div>
+  </section>
+
+  <div class="label">F — Lead extra heavy (800), rest extra light (300), same line</div>
+  <section class="hero">
+    <div class="bg"></div>
+    <div class="content">
+      <div class="avatar"></div>
+      <div class="name">Todd Greenbaum</div>
+      <p class="tagline f">
+        <span class="lead">Turning marketing investment into measurable growth</span> — <span class="rest">15+ years driving integrated, performance, content, and digital marketing for enterprise, B2B, SaaS, and other companies.</span>
+      </p>
+    </div>
+  </section>
+
+  <div class="label">G — Lead is large italic, rest is small-caps below</div>
+  <section class="hero">
+    <div class="bg"></div>
+    <div class="content">
+      <div class="avatar"></div>
+      <div class="name">Todd Greenbaum</div>
+      <p class="tagline g">
+        <span class="lead">Turning marketing investment into measurable growth.</span>
+        <span class="em"></span>
+        <span class="rest">15+ years across integrated, performance, content & digital marketing</span>
+      </p>
+    </div>
+  </section>
+
+  <div class="label">H — Lead slightly bolder + bigger, rest muted (same line, kept em-dash)</div>
+  <section class="hero">
+    <div class="bg"></div>
+    <div class="content">
+      <div class="avatar"></div>
+      <div class="name">Todd Greenbaum</div>
+      <p class="tagline h">
+        <span class="lead">Turning marketing investment into measurable growth</span><span class="em">—</span><span class="rest">15+ years driving integrated, performance, content, and digital marketing for enterprise, B2B, SaaS, and other companies.</span>
+      </p>
+    </div>
+  </section>
+
+</body>
+</html>

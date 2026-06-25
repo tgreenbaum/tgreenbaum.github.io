@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Todd Greenbaum — Portfolio</title>
-<meta name="description" content="Todd Greenbaum — driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies for 15+ years." />
+<meta name="description" content="Todd Greenbaum — turning marketing investment into measurable growth across integrated, performance, content, and digital marketing for enterprise, B2B, SaaS, and other companies." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -152,13 +152,13 @@
     background-size: cover;
     background-position: center;
     z-index: 0;
-    animation: heroZoom 20s ease-out forwards;
+    animation: kenburns 24s ease-in-out infinite alternate;
     /* moody filter — desaturate + slight dim + slight contrast bump */
     filter: saturate(0.45) brightness(0.92) contrast(1.05);
   }
-  @keyframes heroZoom {
-    from { transform: scale(1.08); }
-    to { transform: scale(1); }
+  @keyframes kenburns {
+    0%   { transform: scale(1.05) translate(-1.5%, 1%); }
+    100% { transform: scale(1.18) translate(2%, -1.5%); }
   }
   .hero__bg::after {
     content: '';
@@ -206,16 +206,30 @@
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1.05;
-    margin-bottom: 1rem;
+    margin-bottom: 2.5rem;
   }
   .hero__tagline {
-    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    font-size: clamp(1rem, 1.55vw, 1.2rem);
     font-weight: 600;
     letter-spacing: 0.02em;
     opacity: 1;
-    max-width: 560px;
+    max-width: 720px;
     margin: 0 auto;
     text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+    line-height: 1.45;
+  }
+  .hero__tagline-lead {
+    display: block;
+    font-weight: 700;
+    font-size: 1.15em;
+    color: #f5b78a;
+    line-height: 1.25;
+    margin-bottom: 0.4rem;
+  }
+  .hero__tagline-rest {
+    display: block;
+    font-weight: 300;
+    opacity: 0.88;
   }
   .hero__scroll {
     position: absolute;
@@ -528,7 +542,10 @@
   <div class="hero__content">
     <div class="hero__avatar" aria-label="Profile photo"></div>
     <h1 class="hero__name">Todd Greenbaum</h1>
-    <p class="hero__tagline">Driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies for 15+ years.</p>
+    <p class="hero__tagline">
+      <span class="hero__tagline-lead">Turning marketing investment into measurable growth.</span>
+      <span class="hero__tagline-rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+    </p>
   </div>
   <div class="hero__scroll" id="heroScroll">Scroll</div>
 </header>
@@ -757,7 +774,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.287L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.287Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
         </div>
         <h3 class="expertise-card__title">AI Prompting</h3>
-        <p class="expertise-card__desc">Engineering prompts and workflows with LLM tools like Claude and ChatGPT to accelerate content creation and web development, sharpen research and analysis, and produce higher-quality work in a fraction of the time.</p>
+        <p class="expertise-card__desc">Engineering prompts with LLM tools to develop content, write code, evaluate data, improve internal processes and tools, and produce other work with more efficiency.</p>
       </div>
     </div>
 
@@ -876,14 +893,15 @@
 <section id="about">
   <div class="container reveal">
     <span class="section__label">About</span>
-    <h2 class="section__title">A short, confident sentence about who you are and what you're known for.</h2>
+    <h2 class="section__title">Marketing leader, journalism grad, perpetual student.</h2>
     <p class="about__text">
-      Replace this with a paragraph about your background. Two or three sentences is plenty —
-      <strong>what you do, who you've worked with, what you care about</strong>. Keep it conversational.
+      Over the last 15+ years, I've built integrated marketing programs at companies like ShipStation, Expedia, WP Engine, and Bazaarvoice — spanning content, SEM, customer lifecycle, advocacy, and CRO. As a UT Austin journalism grad, I default to <strong>clear writing, sharp positioning, and customer-first storytelling</strong> over jargon.
     </p>
     <p class="about__text">
-      Add a second paragraph if you want to mention a current focus, a recent project, or where you're based.
-      Brevity wins on a single-page site.
+      Curious and proactive by nature, I'd rather find a better way to do something than wait to be told. As a leader, I give my team the space and ownership to make their own decisions, advocate for them across the org, and keep us all rallied around a shared vision.
+    </p>
+    <p class="about__text">
+      Outside work, I'm a perpetual student — picking up new tools and frameworks (this site is one) is how I stay sharp. When I'm not learning something new, I'm usually planning a trip, fostering a dog or cat between homes, or losing time to a wildlife documentary.
     </p>
   </div>
 </section>
