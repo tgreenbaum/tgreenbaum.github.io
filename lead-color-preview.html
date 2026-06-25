@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Lead color preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', system-ui, sans-serif; background: #0e0e10; color: #fff; }
+  .label {
+    padding: 1.25rem 2rem 0.4rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    font-family: ui-monospace, Menlo, monospace;
+  }
+  .hero {
+    position: relative;
+    height: 55vh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    text-align: center;
+    padding: 3rem 1.5rem;
+  }
+  .bg { position: absolute; inset: 0; background: url('images/heros/hero-6.jpg') center/cover no-repeat; filter: saturate(0.45) brightness(0.92) contrast(1.05); }
+  .bg::after { content: ''; position: absolute; inset: 0; background: rgba(8, 9, 20, 0.55); }
+  .content { position: relative; z-index: 1; max-width: 720px; }
+  .avatar {
+    position: relative; width: 144px; height: 144px;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.9);
+    margin: 0 auto 1.5rem;
+    background: url('images/avatar-2.jpg') center/cover;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    filter: saturate(0.75);
+  }
+  .avatar::before {
+    content: ''; position: absolute; inset: -12px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: rgba(255,255,255,0.6);
+    border-right-color: rgba(255,255,255,0.6);
+    transform: rotate(-45deg);
+    pointer-events: none;
+  }
+  .name {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 2.5rem;
+  }
+  .tagline {
+    font-size: clamp(1rem, 1.55vw, 1.2rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    max-width: 720px;
+    margin: 0 auto;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+    line-height: 1.45;
+  }
+  .lead {
+    display: block;
+    font-weight: 700;
+    font-size: 1.15em;
+    line-height: 1.25;
+    margin-bottom: 0.4rem;
+  }
+  .rest { display: block; font-weight: 300; opacity: 0.88; }
+
+  .intro { padding: 2rem 2rem 0; max-width: 800px; color: rgba(255,255,255,0.78); font-size: 0.95rem; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+  <div class="intro">
+    <strong>Lead color options.</strong> Same font, size, and weight in every section — only the lead color changes. Pick a letter and I'll wire it in.
+  </div>
+
+  <div class="label">A — Warm amber (current) #f5b78a</div>
+  <section class="hero"><div class="bg"></div><div class="content"><div class="avatar"></div><div class="name">Todd Greenbaum</div><p class="tagline">
+    <span class="lead" style="color:#f5b78a;">Turning marketing investment into measurable growth.</span>
+    <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+  </p></div></section>
+
+  <div class="label">B — Pure white #ffffff</div>
+  <section class="hero"><div class="bg"></div><div class="content"><div class="avatar"></div><div class="name">Todd Greenbaum</div><p class="tagline">
+    <span class="lead" style="color:#ffffff;">Turning marketing investment into measurable growth.</span>
+    <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+  </p></div></section>
+
+  <div class="label">C — Cream / off-white #f5eed5</div>
+  <section class="hero"><div class="bg"></div><div class="content"><div class="avatar"></div><div class="name">Todd Greenbaum</div><p class="tagline">
+    <span class="lead" style="color:#f5eed5;">Turning marketing investment into measurable growth.</span>
+    <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+  </p></div></section>
+
+  <div class="label">D — Bright gold #f5d76a</div>
+  <section class="hero"><div class="bg"></div><div class="content"><div class="avatar"></div><div class="name">Todd Greenbaum</div><p class="tagline">
+    <span class="lead" style="color:#f5d76a;">Turning marketing investment into measurable growth.</span>
+    <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+  </p></div></section>
+
+  <div class="label">E — Coral / warm pink #ff9b8a</div>
+  <section class="hero"><div class="bg"></div><div class="content"><div class="avatar"></div><div class="name">Todd Greenbaum</div><p class="tagline">
+    <span class="lead" style="color:#ff9b8a;">Turning marketing investment into measurable growth.</span>
+    <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+  </p></div></section>
+
+  <div class="label">F — Soft mint #a8e6cf</div>
+  <section class="hero"><div class="bg"></div><div class="content"><div class="avatar"></div><div class="name">Todd Greenbaum</div><p class="tagline">
+    <span class="lead" style="color:#a8e6cf;">Turning marketing investment into measurable growth.</span>
+    <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+  </p></div></section>
+
+  <div class="label">G — Cool sky blue #a3c5ef</div>
+  <section class="hero"><div class="bg"></div><div class="content"><div class="avatar"></div><div class="name">Todd Greenbaum</div><p class="tagline">
+    <span class="lead" style="color:#a3c5ef;">Turning marketing investment into measurable growth.</span>
+    <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+  </p></div></section>
+
+  <div class="label">H — Bright cyan / teal #7adcdc</div>
+  <section class="hero"><div class="bg"></div><div class="content"><div class="avatar"></div><div class="name">Todd Greenbaum</div><p class="tagline">
+    <span class="lead" style="color:#7adcdc;">Turning marketing investment into measurable growth.</span>
+    <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+  </p></div></section>
+
+  <div class="label">I — Lavender #d4c1f0</div>
+  <section class="hero"><div class="bg"></div><div class="content"><div class="avatar"></div><div class="name">Todd Greenbaum</div><p class="tagline">
+    <span class="lead" style="color:#d4c1f0;">Turning marketing investment into measurable growth.</span>
+    <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+  </p></div></section>
+
+  <div class="label">J — Warm tan #d9b08c</div>
+  <section class="hero"><div class="bg"></div><div class="content"><div class="avatar"></div><div class="name">Todd Greenbaum</div><p class="tagline">
+    <span class="lead" style="color:#d9b08c;">Turning marketing investment into measurable growth.</span>
+    <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+  </p></div></section>
+
+</body>
+</html>
