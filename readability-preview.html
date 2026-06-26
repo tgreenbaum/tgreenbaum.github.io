@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Tagline readability treatments</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', system-ui, sans-serif; background: #0e0e10; color: #fff; }
+  .label {
+    padding: 1.25rem 2rem 0.4rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    font-family: ui-monospace, Menlo, monospace;
+  }
+  .hero {
+    position: relative;
+    height: 55vh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    text-align: center;
+    padding: 3rem 1.5rem;
+  }
+  .bg { position: absolute; inset: 0; background: url('images/heros/hero-6.jpg') center/cover no-repeat; filter: saturate(0.45) brightness(0.92) contrast(1.05); }
+  .bg::after { content: ''; position: absolute; inset: 0; background: rgba(8, 9, 20, 0.55); }
+  .content { position: relative; z-index: 1; max-width: 720px; }
+  .avatar {
+    position: relative; width: 144px; height: 144px;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.9);
+    margin: 0 auto 1.5rem;
+    background: url('images/avatar-2.jpg') center/cover;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    filter: saturate(0.75);
+  }
+  .avatar::before {
+    content: ''; position: absolute; inset: -12px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: rgba(255,255,255,0.6);
+    border-right-color: rgba(255,255,255,0.6);
+    transform: rotate(-45deg);
+    pointer-events: none;
+  }
+  .name {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 2.5rem;
+  }
+
+  /* === base tagline (current production styling) === */
+  .tagline {
+    font-size: clamp(1rem, 1.55vw, 1.2rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    max-width: 720px;
+    margin: 0 auto;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+    line-height: 1.45;
+  }
+  .lead {
+    display: block;
+    font-weight: 700;
+    font-size: 1.15em;
+    color: #a3c5ef;
+    line-height: 1.25;
+    margin-bottom: 0.4rem;
+  }
+  .rest { display: block; font-weight: 300; opacity: 0.88; }
+
+  /* === A: current — no enhancement === */
+
+  /* === B: stronger text shadow on tagline === */
+  .b .tagline { text-shadow: 0 2px 20px rgba(0,0,0,0.85), 0 0 4px rgba(0,0,0,0.4); }
+
+  /* === C: full opacity on the second line === */
+  .c .rest { opacity: 1; }
+
+  /* === D: slight letter-spacing on the second line === */
+  .d .rest { letter-spacing: 0.025em; }
+
+  /* === E: subtle dark plate behind the tagline === */
+  .e .tagline {
+    background: rgba(0,0,0,0.25);
+    padding: 1.25rem 1.75rem;
+    border-radius: 14px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  /* === F: radial darkening behind tagline area (added under the tagline content) === */
+  .f::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 35% at 50% 70%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 70%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* === G: combo — stronger shadow + 100% opacity (subtle, recommended) === */
+  .g .tagline { text-shadow: 0 2px 20px rgba(0,0,0,0.85), 0 0 4px rgba(0,0,0,0.4); }
+  .g .rest { opacity: 1; }
+
+  /* === H: combo — dark plate + 100% opacity (more visible improvement) === */
+  .h .tagline {
+    background: rgba(0,0,0,0.3);
+    padding: 1.25rem 1.75rem;
+    border-radius: 14px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .h .rest { opacity: 1; }
+
+  .intro { padding: 2rem 2rem 0; max-width: 800px; color: rgba(255,255,255,0.78); font-size: 0.95rem; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+  <div class="intro">
+    <strong>Readability treatments — same colors, same sizes, same weights.</strong> Each section below tweaks shadow, opacity, letter-spacing, or adds a soft backdrop. Pick a letter and I'll wire it in.
+  </div>
+
+  <div class="label">A — Current (baseline, no enhancement)</div>
+  <section class="hero"><div class="bg"></div><div class="content"><div class="avatar"></div><div class="name">Todd Greenbaum</div><p class="tagline">
+    <span class="lead">Turning marketing investment into measurable growth.</span>
+    <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+  </p></div></section>
+
+  <div class="label">B — Stronger text shadow (deeper blur behind letters)</div>
+  <section class="hero b"><div class="bg"></div><div class="content"><div class="avatar"></div><div class="name">Todd Greenbaum</div><p class="tagline">
+    <span class="lead">Turning marketing investment into measurable growth.</span>
+    <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+  </p></div></section>
+
+  <div class="label">C — 100% opacity on second line (no more dimming)</div>
+  <section class="hero c"><div class="bg"></div><div class="content"><div class="avatar"></div><div class="name">Todd Greenbaum</div><p class="tagline">
+    <span class="lead">Turning marketing investment into measurable growth.</span>
+    <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+  </p></div></section>
+
+  <div class="label">D — Slight letter-spacing on second line (more breathing room)</div>
+  <section class="hero d"><div class="bg"></div><div class="content"><div class="avatar"></div><div class="name">Todd Greenbaum</div><p class="tagline">
+    <span class="lead">Turning marketing investment into measurable growth.</span>
+    <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+  </p></div></section>
+
+  <div class="label">E — Subtle dark plate behind tagline (frosted-glass panel)</div>
+  <section class="hero e"><div class="bg"></div><div class="content"><div class="avatar"></div><div class="name">Todd Greenbaum</div><p class="tagline">
+    <span class="lead">Turning marketing investment into measurable growth.</span>
+    <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+  </p></div></section>
+
+  <div class="label">F — Radial darkening behind the text area</div>
+  <section class="hero f"><div class="bg"></div><div class="content"><div class="avatar"></div><div class="name">Todd Greenbaum</div><p class="tagline">
+    <span class="lead">Turning marketing investment into measurable growth.</span>
+    <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+  </p></div></section>
+
+  <div class="label">G — Combo: stronger shadow + 100% opacity (subtle, my pick)</div>
+  <section class="hero g"><div class="bg"></div><div class="content"><div class="avatar"></div><div class="name">Todd Greenbaum</div><p class="tagline">
+    <span class="lead">Turning marketing investment into measurable growth.</span>
+    <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+  </p></div></section>
+
+  <div class="label">H — Combo: dark plate + 100% opacity (most visible improvement)</div>
+  <section class="hero h"><div class="bg"></div><div class="content"><div class="avatar"></div><div class="name">Todd Greenbaum</div><p class="tagline">
+    <span class="lead">Turning marketing investment into measurable growth.</span>
+    <span class="rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+  </p></div></section>
+
+</body>
+</html>
