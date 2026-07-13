@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>About section style treatments</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', system-ui, sans-serif; background: #fff; color: #111; }
+  .label {
+    padding: 1.5rem 2rem 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.4);
+    font-family: ui-monospace, Menlo, monospace;
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
+  section.about { max-width: 720px; margin: 0 auto; padding: 1rem 2rem 3rem; }
+  h2.section__title {
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    margin-bottom: 1.75rem;
+  }
+  p { font-size: 1.1rem; color: #6b6b6b; margin-bottom: 1rem; line-height: 1.65; }
+  .intro { max-width: 800px; padding: 2rem 2rem 0; margin: 0 auto; color: rgba(0,0,0,0.6); font-size: 0.95rem; line-height: 1.6; }
+
+  /* === A: current baseline === */
+
+  /* === B: lede — first sentence larger, dark, and pulled up as a mini intro line === */
+  .b .lede {
+    display: block;
+    font-size: 1.3em;
+    font-weight: 500;
+    color: #111;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+
+  /* === C: accent keyword highlights — key phrases in a muted blue, medium weight === */
+  .c .accent { color: #2f5f8f; font-weight: 500; }
+
+  /* === D: drop cap on the first paragraph === */
+  .d p:first-of-type::first-letter {
+    float: left;
+    font-size: 3.6rem;
+    line-height: 0.85;
+    font-weight: 600;
+    padding-right: 0.5rem;
+    color: #111;
+  }
+
+  /* === E: pull-quote — one phrase set apart in large serif-ish italic between paragraphs === */
+  .e .pullquote {
+    display: block;
+    font-size: 1.45rem;
+    font-weight: 500;
+    font-style: italic;
+    color: #111;
+    line-height: 1.4;
+    margin: 1.75rem 0;
+    padding-left: 1.25rem;
+    border-left: 3px solid #2f5f8f;
+  }
+
+  /* === F: airier editorial feel — more line-height, tiny letter-spacing, lighter weight === */
+  .f p { line-height: 1.9; letter-spacing: 0.01em; font-weight: 300; font-size: 1.15rem; }
+
+  /* === G: mini sub-heads — first few words of each paragraph bolded as a lede-in === */
+  .g .leadin { font-weight: 600; color: #111; }
+
+  /* === H: combo — lede treatment + accent keyword highlights (recommended) === */
+  .h .lede {
+    display: block;
+    font-size: 1.3em;
+    font-weight: 500;
+    color: #111;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+  .h .accent { color: #2f5f8f; font-weight: 500; }
+</style>
+</head>
+<body>
+
+<div class="intro">
+  <strong>About section style treatments.</strong> Same copy, same section — each version below tries a different way to add visual interest. Pick a letter (or mix pieces of a few) and I'll wire it into the real page.
+</div>
+
+<div class="label">A — Current (baseline, no styling)</div>
+<section class="about">
+  <h2 class="section__title">About</h2>
+  <p>Over the last 15+ years, I've built integrated marketing programs at companies like ShipStation, Expedia, WP Engine, and Bazaarvoice — spanning content, SEM, customer lifecycle, advocacy, and CRO. As a UT Austin journalism grad, I default to clear writing, sharp positioning, and customer-first storytelling over jargon.</p>
+  <p>Curious and proactive by nature, I'd rather find a better way to do something than wait to be told. As a leader, I give my team the space and ownership to make their own decisions, advocate for them across the org, and keep us all rallied around a shared vision.</p>
+  <p>Outside work, I'm a perpetual student — picking up new tools and frameworks (this site is one) is how I stay sharp. When I'm not learning something new, I'm usually planning a trip, fostering a dog or cat between homes, or losing time to a wildlife documentary.</p>
+</section>
+
+<div class="label">B — Lede: first sentence pulled out larger &amp; darker</div>
+<section class="about b">
+  <h2 class="section__title">About</h2>
+  <p><span class="lede">Marketing leader, journalism grad, perpetual student.</span>Over the last 15+ years, I've built integrated marketing programs at companies like ShipStation, Expedia, WP Engine, and Bazaarvoice — spanning content, SEM, customer lifecycle, advocacy, and CRO. As a UT Austin journalism grad, I default to clear writing, sharp positioning, and customer-first storytelling over jargon.</p>
+  <p>Curious and proactive by nature, I'd rather find a better way to do something than wait to be told. As a leader, I give my team the space and ownership to make their own decisions, advocate for them across the org, and keep us all rallied around a shared vision.</p>
+  <p>Outside work, I'm a perpetual student — picking up new tools and frameworks (this site is one) is how I stay sharp. When I'm not learning something new, I'm usually planning a trip, fostering a dog or cat between homes, or losing time to a wildlife documentary.</p>
+</section>
+
+<div class="label">C — Accent keywords: key phrases in muted blue</div>
+<section class="about c">
+  <h2 class="section__title">About</h2>
+  <p>Over the last 15+ years, I've built integrated marketing programs at companies like ShipStation, Expedia, WP Engine, and Bazaarvoice — spanning content, SEM, customer lifecycle, advocacy, and CRO. As a UT Austin journalism grad, I default to <span class="accent">clear writing, sharp positioning, and customer-first storytelling</span> over jargon.</p>
+  <p>Curious and proactive by nature, I'd rather find a better way to do something than wait to be told. As a leader, I give my team <span class="accent">the space and ownership to make their own decisions</span>, advocate for them across the org, and keep us all rallied around a shared vision.</p>
+  <p>Outside work, I'm <span class="accent">a perpetual student</span> — picking up new tools and frameworks (this site is one) is how I stay sharp. When I'm not learning something new, I'm usually planning a trip, fostering a dog or cat between homes, or losing time to a wildlife documentary.</p>
+</section>
+
+<div class="label">D — Drop cap on the opening paragraph</div>
+<section class="about d">
+  <h2 class="section__title">About</h2>
+  <p>Over the last 15+ years, I've built integrated marketing programs at companies like ShipStation, Expedia, WP Engine, and Bazaarvoice — spanning content, SEM, customer lifecycle, advocacy, and CRO. As a UT Austin journalism grad, I default to clear writing, sharp positioning, and customer-first storytelling over jargon.</p>
+  <p>Curious and proactive by nature, I'd rather find a better way to do something than wait to be told. As a leader, I give my team the space and ownership to make their own decisions, advocate for them across the org, and keep us all rallied around a shared vision.</p>
+  <p>Outside work, I'm a perpetual student — picking up new tools and frameworks (this site is one) is how I stay sharp. When I'm not learning something new, I'm usually planning a trip, fostering a dog or cat between homes, or losing time to a wildlife documentary.</p>
+</section>
+
+<div class="label">E — Pull-quote: one line set apart with an accent border</div>
+<section class="about e">
+  <h2 class="section__title">About</h2>
+  <p>Over the last 15+ years, I've built integrated marketing programs at companies like ShipStation, Expedia, WP Engine, and Bazaarvoice — spanning content, SEM, customer lifecycle, advocacy, and CRO.</p>
+  <span class="pullquote">I default to clear writing, sharp positioning, and customer-first storytelling over jargon.</span>
+  <p>Curious and proactive by nature, I'd rather find a better way to do something than wait to be told. As a leader, I give my team the space and ownership to make their own decisions, advocate for them across the org, and keep us all rallied around a shared vision.</p>
+  <p>Outside work, I'm a perpetual student — picking up new tools and frameworks (this site is one) is how I stay sharp. When I'm not learning something new, I'm usually planning a trip, fostering a dog or cat between homes, or losing time to a wildlife documentary.</p>
+</section>
+
+<div class="label">F — Airier editorial feel: more breathing room, lighter weight</div>
+<section class="about f">
+  <h2 class="section__title">About</h2>
+  <p>Over the last 15+ years, I've built integrated marketing programs at companies like ShipStation, Expedia, WP Engine, and Bazaarvoice — spanning content, SEM, customer lifecycle, advocacy, and CRO. As a UT Austin journalism grad, I default to clear writing, sharp positioning, and customer-first storytelling over jargon.</p>
+  <p>Curious and proactive by nature, I'd rather find a better way to do something than wait to be told. As a leader, I give my team the space and ownership to make their own decisions, advocate for them across the org, and keep us all rallied around a shared vision.</p>
+  <p>Outside work, I'm a perpetual student — picking up new tools and frameworks (this site is one) is how I stay sharp. When I'm not learning something new, I'm usually planning a trip, fostering a dog or cat between homes, or losing time to a wildlife documentary.</p>
+</section>
+
+<div class="label">G — Mini sub-heads: bold lead-in words per paragraph</div>
+<section class="about g">
+  <h2 class="section__title">About</h2>
+  <p><span class="leadin">15+ years in.</span> I've built integrated marketing programs at companies like ShipStation, Expedia, WP Engine, and Bazaarvoice — spanning content, SEM, customer lifecycle, advocacy, and CRO. As a UT Austin journalism grad, I default to clear writing, sharp positioning, and customer-first storytelling over jargon.</p>
+  <p><span class="leadin">Curious and proactive by nature,</span> I'd rather find a better way to do something than wait to be told. As a leader, I give my team the space and ownership to make their own decisions, advocate for them across the org, and keep us all rallied around a shared vision.</p>
+  <p><span class="leadin">Outside work,</span> I'm a perpetual student — picking up new tools and frameworks (this site is one) is how I stay sharp. When I'm not learning something new, I'm usually planning a trip, fostering a dog or cat between homes, or losing time to a wildlife documentary.</p>
+</section>
+
+<div class="label">H — Combo: lede line + accent keywords (my pick)</div>
+<section class="about h">
+  <h2 class="section__title">About</h2>
+  <p><span class="lede">Marketing leader, journalism grad, perpetual student.</span>Over the last 15+ years, I've built integrated marketing programs at companies like ShipStation, Expedia, WP Engine, and Bazaarvoice — spanning content, SEM, customer lifecycle, advocacy, and CRO. As a UT Austin journalism grad, I default to <span class="accent">clear writing, sharp positioning, and customer-first storytelling</span> over jargon.</p>
+  <p>Curious and proactive by nature, I'd rather find a better way to do something than wait to be told. As a leader, I give my team <span class="accent">the space and ownership to make their own decisions</span>, advocate for them across the org, and keep us all rallied around a shared vision.</p>
+  <p>Outside work, I'm <span class="accent">a perpetual student</span> — picking up new tools and frameworks (this site is one) is how I stay sharp. When I'm not learning something new, I'm usually planning a trip, fostering a dog or cat between homes, or losing time to a wildlife documentary.</p>
+</section>
+
+</body>
+</html>
