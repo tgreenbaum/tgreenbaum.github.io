@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>About section — subtle visual treatments</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', system-ui, sans-serif; background: #fff; color: #111; }
+  .label {
+    padding: 1.5rem 2rem 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.4);
+    font-family: ui-monospace, Menlo, monospace;
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
+  section.about { max-width: 980px; margin: 0 auto; padding: 1rem 2rem 3rem; position: relative; }
+  h2.section__title {
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    margin-bottom: 1.75rem;
+  }
+  p { font-size: 1.05rem; color: #6b6b6b; margin-bottom: 1rem; line-height: 1.65; max-width: 900px; }
+  .intro { max-width: 800px; padding: 2rem 2rem 0; margin: 0 auto; color: rgba(0,0,0,0.6); font-size: 0.95rem; line-height: 1.6; }
+
+  /* === A: current baseline === */
+
+  /* === B: thin accent rule down the left side === */
+  .b .about-body { border-left: 3px solid #a3c5ef; padding-left: 1.5rem; }
+
+  /* === C: large decorative quote mark behind the copy === */
+  .c { padding-top: 0.5rem; }
+  .c .quotemark {
+    position: absolute;
+    top: 2.2rem;
+    left: 2rem;
+    font-size: 7rem;
+    font-weight: 700;
+    color: #a3c5ef;
+    opacity: 0.18;
+    line-height: 1;
+    font-family: Georgia, serif;
+    user-select: none;
+    z-index: 0;
+  }
+  .c .about-body { position: relative; z-index: 1; }
+
+  /* === D: "15+ years" stat pulled out beside the copy (two-column on wide screens) === */
+  .d .about-grid {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+  .d .stat { text-align: left; }
+  .d .stat__num {
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: #a3c5ef;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .d .stat__label {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #9a9a9a;
+    margin-top: 0.5rem;
+  }
+  @media (max-width: 700px) {
+    .d .about-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="intro">
+  <strong>About section — subtle visual treatments.</strong> Same copy, same layout footprint — each one adds a light visual touch without changing the tone. Pick a letter (or mix pieces) and I'll wire it in.
+</div>
+
+<div class="label">A — Current (baseline, no visual treatment)</div>
+<section class="about">
+  <h2 class="section__title">About</h2>
+  <div class="about-body">
+    <p>I'm a marketing strategist who thrives at the intersection of strategy, execution, and collaboration. Over the past 15 years, I've worked across nearly every stage of the customer journey.</p>
+    <p>That breadth has shaped how I approach marketing today: as a connected ecosystem where every touchpoint contributes to a better customer experience and drives business growth.</p>
+  </div>
+</section>
+
+<div class="label">B — Thin accent rule along the left edge</div>
+<section class="about b">
+  <h2 class="section__title">About</h2>
+  <div class="about-body">
+    <p>I'm a marketing strategist who thrives at the intersection of strategy, execution, and collaboration. Over the past 15 years, I've worked across nearly every stage of the customer journey.</p>
+    <p>That breadth has shaped how I approach marketing today: as a connected ecosystem where every touchpoint contributes to a better customer experience and drives business growth.</p>
+  </div>
+</section>
+
+<div class="label">C — Large decorative quotation mark behind the copy</div>
+<section class="about c">
+  <span class="quotemark">&ldquo;</span>
+  <h2 class="section__title">About</h2>
+  <div class="about-body">
+    <p>I'm a marketing strategist who thrives at the intersection of strategy, execution, and collaboration. Over the past 15 years, I've worked across nearly every stage of the customer journey.</p>
+    <p>That breadth has shaped how I approach marketing today: as a connected ecosystem where every touchpoint contributes to a better customer experience and drives business growth.</p>
+  </div>
+</section>
+
+<div class="label">D — "15+ years" pulled out as a stat beside the copy (wide screens)</div>
+<section class="about d">
+  <h2 class="section__title">About</h2>
+  <div class="about-grid">
+    <div class="stat">
+      <div class="stat__num">15+</div>
+      <div class="stat__label">Years in Marketing</div>
+    </div>
+    <div class="about-body">
+      <p>I'm a marketing strategist who thrives at the intersection of strategy, execution, and collaboration. I've worked across nearly every stage of the customer journey.</p>
+      <p>That breadth has shaped how I approach marketing today: as a connected ecosystem where every touchpoint contributes to a better customer experience and drives business growth.</p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
