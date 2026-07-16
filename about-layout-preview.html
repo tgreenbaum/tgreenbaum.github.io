@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>About section — layout mockups</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', system-ui, sans-serif; background: #fff; color: #111; }
+  .label {
+    padding: 1.75rem 2rem 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.4);
+    font-family: ui-monospace, Menlo, monospace;
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
+  section.about { max-width: 980px; margin: 0 auto; padding: 1rem 2rem 3rem; }
+  h2.section__title {
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    margin-bottom: 1.75rem;
+  }
+  p { font-size: 1.05rem; color: #6b6b6b; margin-bottom: 1rem; line-height: 1.65; }
+  .intro { max-width: 800px; padding: 2rem 2rem 0; margin: 0 auto; color: rgba(0,0,0,0.6); font-size: 0.95rem; line-height: 1.6; }
+
+  /* === A: photo alongside text === */
+  .a-grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+  .a-photo {
+    width: 220px;
+    height: 260px;
+    border-radius: 14px;
+    background: url('images/avatar-2.jpg') center/cover;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  @media (max-width: 700px) {
+    .a-grid { grid-template-columns: 1fr; }
+    .a-photo { width: 140px; height: 140px; border-radius: 50%; margin-bottom: 1rem; }
+  }
+
+  /* === B: two-column text split === */
+  .b-columns {
+    columns: 2;
+    column-gap: 2.5rem;
+  }
+  .b-columns p { break-inside: avoid; }
+  @media (max-width: 700px) {
+    .b-columns { columns: 1; }
+  }
+
+  /* === C: trait badges === */
+  .c-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.75rem;
+  }
+  .c-badge {
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    background: #fafafa;
+    border: 1px solid rgba(0,0,0,0.08);
+    color: #4a83c0;
+  }
+
+  /* === D: single highlighted phrase === */
+  .d-highlight { color: #4a83c0; font-weight: 500; }
+</style>
+</head>
+<body>
+
+<div class="intro">
+  <strong>About section — layout mockups.</strong> Four different ways to break up the block, using your real copy. Pick one (or mix) and I'll wire it into the real page.
+</div>
+
+<div class="label">A — Photo alongside the text (two-column, stacks on mobile)</div>
+<section class="about">
+  <h2 class="section__title">About</h2>
+  <div class="a-grid">
+    <div class="a-photo"></div>
+    <div>
+      <p>I'm a marketing strategist who thrives at the intersection of strategy, execution, and collaboration. Over the past 15 years, I've worked across nearly every stage of the customer journey.</p>
+      <p>That breadth has shaped how I approach marketing today: as a connected ecosystem where every touchpoint contributes to a better customer experience and drives business growth.</p>
+      <p>Over time, my role has evolved from executing campaigns to shaping strategy, building and scaling programs, leading teams, and partnering across functions to turn ideas into measurable outcomes.</p>
+    </div>
+  </div>
+</section>
+
+<div class="label">B — Two-column text split (magazine-style, stacks on mobile)</div>
+<section class="about">
+  <h2 class="section__title">About</h2>
+  <div class="b-columns">
+    <p>I'm a marketing strategist who thrives at the intersection of strategy, execution, and collaboration. Over the past 15 years, I've worked across nearly every stage of the customer journey.</p>
+    <p>That breadth has shaped how I approach marketing today: as a connected ecosystem where every touchpoint contributes to a better customer experience and drives business growth.</p>
+    <p>Over time, my role has evolved from executing campaigns to shaping strategy, building and scaling programs, leading teams, and partnering across functions to turn ideas into measurable outcomes.</p>
+    <p>I do my best work connecting the dots between customer needs, business goals, and execution—shaping both the vision and the path to achieving it.</p>
+    <p>I'm most energized by open-ended challenges—where I have the freedom to ask questions, challenge assumptions, uncover opportunities, collaborate with others, and build something better.</p>
+    <p>One of the most rewarding parts of my work is helping others succeed. I enjoy mentoring teammates, communicating a vision, bringing people together, and giving them the clarity and confidence to do their best work.</p>
+  </div>
+</section>
+
+<div class="label">C — Small trait badges above the text</div>
+<section class="about">
+  <h2 class="section__title">About</h2>
+  <div class="c-badges">
+    <span class="c-badge">Strategic</span>
+    <span class="c-badge">Curious</span>
+    <span class="c-badge">Collaborative</span>
+    <span class="c-badge">Hands-on</span>
+  </div>
+  <p>I'm a marketing strategist who thrives at the intersection of strategy, execution, and collaboration. Over the past 15 years, I've worked across nearly every stage of the customer journey.</p>
+  <p>That breadth has shaped how I approach marketing today: as a connected ecosystem where every touchpoint contributes to a better customer experience and drives business growth.</p>
+</section>
+
+<div class="label">D — One phrase highlighted in accent blue</div>
+<section class="about">
+  <h2 class="section__title">About</h2>
+  <p>I'm a marketing strategist who thrives at the intersection of strategy, execution, and collaboration. Over the past 15 years, I've worked across nearly every stage of the customer journey.</p>
+  <p>That breadth has shaped how I approach marketing today: <span class="d-highlight">as a connected ecosystem where every touchpoint contributes to a better customer experience and drives business growth</span>.</p>
+  <p>Over time, my role has evolved from executing campaigns to shaping strategy, building and scaling programs, leading teams, and partnering across functions to turn ideas into measurable outcomes.</p>
+</section>
+
+</body>
+</html>
