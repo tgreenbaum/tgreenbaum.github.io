@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Hero — graphical enhancement mockups</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', system-ui, sans-serif; background: #0e0e10; color: #fff; }
+  .label {
+    padding: 1.25rem 2rem 0.4rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    font-family: ui-monospace, Menlo, monospace;
+  }
+  .intro { padding: 2rem 2rem 0; max-width: 800px; color: rgba(255,255,255,0.78); font-size: 0.95rem; line-height: 1.6; }
+
+  .hero {
+    position: relative;
+    height: 72vh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    text-align: center;
+    padding: 3rem 1.5rem;
+  }
+  .hero__bg {
+    position: absolute; inset: 0;
+    background: url('images/heros/hero-6.jpg') center/cover no-repeat;
+    filter: saturate(0.45) brightness(0.92) contrast(1.05);
+  }
+  .hero__bg::after { content: ''; position: absolute; inset: 0; background: rgba(8, 9, 20, 0.55); }
+  .hero__content { position: relative; z-index: 2; max-width: 720px; }
+  .hero__avatar {
+    position: relative; width: 144px; height: 144px;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.9);
+    margin: 0 auto 1.5rem;
+    background: url('images/avatar-2.jpg') center/cover;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    filter: saturate(0.75);
+  }
+  .hero__avatar::before {
+    content: ''; position: absolute; inset: -12px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: rgba(255,255,255,0.6);
+    border-right-color: rgba(255,255,255,0.6);
+    transform: rotate(-45deg);
+    pointer-events: none;
+  }
+  .hero__name {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 1.75rem;
+  }
+  .hero__tagline {
+    font-size: clamp(1rem, 1.55vw, 1.2rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    max-width: 720px;
+    margin: 0 auto;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.85), 0 0 4px rgba(0,0,0,0.4);
+    line-height: 1.45;
+  }
+  .hero__tagline-lead { display: block; font-weight: 700; font-size: 1.15em; color: #a3c5ef; line-height: 1.25; margin-bottom: 0.4rem; }
+  .hero__tagline-rest { display: block; font-weight: 300; opacity: 1; }
+  .hero__scroll {
+    position: absolute; bottom: 1.75rem; left: 50%; transform: translateX(-50%);
+    color: rgba(255,255,255,0.7);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  /* === A: stat strip under tagline === */
+  .a-stats {
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .a-stat {
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.25);
+    backdrop-filter: blur(4px);
+  }
+
+  /* === B: redesigned scroll cue (animated chevron) === */
+  .b-scroll-icon {
+    width: 20px; height: 32px;
+    border: 2px solid rgba(255,255,255,0.6);
+    border-radius: 12px;
+    position: relative;
+    margin: 0 auto 0.5rem;
+  }
+  .b-scroll-icon::before {
+    content: '';
+    position: absolute;
+    top: 6px; left: 50%;
+    width: 4px; height: 4px;
+    background: #fff;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    animation: scrollDot 1.6s ease-in-out infinite;
+  }
+  @keyframes scrollDot {
+    0% { top: 6px; opacity: 1; }
+    70% { top: 18px; opacity: 0; }
+    100% { top: 18px; opacity: 0; }
+  }
+
+  /* === C: accent glow ring around avatar === */
+  .c-avatar { position: relative; width: 144px; height: 144px; margin: 0 auto 1.5rem; }
+  .c-avatar::after {
+    content: '';
+    position: absolute;
+    inset: -18px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(163,197,239,0.55) 0%, rgba(163,197,239,0) 70%);
+    z-index: -1;
+  }
+  .c-avatar .hero__avatar { margin: 0; }
+
+  /* === D: quick LinkedIn link near tagline === */
+  .d-social {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    padding: 0.5rem 1.1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  .d-social svg { width: 16px; height: 16px; fill: currentColor; }
+
+  /* === E: corner accent blob === */
+  .e-blob {
+    position: absolute;
+    top: -10%; right: -8%;
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, rgba(163,197,239,0.35) 0%, rgba(163,197,239,0) 70%);
+    z-index: 1;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="intro">
+  <strong>Hero enhancement mockups.</strong> Each uses your real hero photo, avatar, name, and tagline — one change per section so you can see it in isolation.
+</div>
+
+<div class="label">A — Stat strip under the tagline</div>
+<section class="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__content">
+    <div class="hero__avatar"></div>
+    <h1 class="hero__name">Todd Greenbaum</h1>
+    <p class="hero__tagline">
+      <span class="hero__tagline-lead">Turning marketing investment into measurable growth.</span>
+      <span class="hero__tagline-rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+    </p>
+    <div class="a-stats">
+      <span class="a-stat">15+ Years</span>
+      <span class="a-stat">B2B &amp; SaaS</span>
+      <span class="a-stat">Marketing Strategist</span>
+    </div>
+  </div>
+</section>
+
+<div class="label">B — Redesigned scroll cue (animated icon instead of text)</div>
+<section class="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__content">
+    <div class="hero__avatar"></div>
+    <h1 class="hero__name">Todd Greenbaum</h1>
+    <p class="hero__tagline">
+      <span class="hero__tagline-lead">Turning marketing investment into measurable growth.</span>
+      <span class="hero__tagline-rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+    </p>
+  </div>
+  <div class="hero__scroll"><div class="b-scroll-icon"></div></div>
+</section>
+
+<div class="label">C — Soft accent glow behind the avatar photo</div>
+<section class="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__content">
+    <div class="c-avatar"><div class="hero__avatar"></div></div>
+    <h1 class="hero__name">Todd Greenbaum</h1>
+    <p class="hero__tagline">
+      <span class="hero__tagline-lead">Turning marketing investment into measurable growth.</span>
+      <span class="hero__tagline-rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+    </p>
+  </div>
+</section>
+
+<div class="label">D — Quick LinkedIn link near the tagline</div>
+<section class="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__content">
+    <div class="hero__avatar"></div>
+    <h1 class="hero__name">Todd Greenbaum</h1>
+    <p class="hero__tagline">
+      <span class="hero__tagline-lead">Turning marketing investment into measurable growth.</span>
+      <span class="hero__tagline-rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+    </p>
+    <a class="d-social" href="#">
+      <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.063 2.063 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      Connect on LinkedIn
+    </a>
+  </div>
+</section>
+
+<div class="label">E — Soft corner accent blob (adds depth in the top-right)</div>
+<section class="hero">
+  <div class="hero__bg"></div>
+  <div class="e-blob"></div>
+  <div class="hero__content">
+    <div class="hero__avatar"></div>
+    <h1 class="hero__name">Todd Greenbaum</h1>
+    <p class="hero__tagline">
+      <span class="hero__tagline-lead">Turning marketing investment into measurable growth.</span>
+      <span class="hero__tagline-rest">15+ years driving integrated, performance, content, and digital marketing success for enterprise, B2B, SaaS, and other companies.</span>
+    </p>
+  </div>
+</section>
+
+</body>
+</html>
