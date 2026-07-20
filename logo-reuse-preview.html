@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Logo reuse — section divider, signature sign-off, footer mark</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', system-ui, sans-serif; background: #fff; color: #111; }
+  .label {
+    padding: 1.75rem 2rem 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.4);
+    font-family: ui-monospace, Menlo, monospace;
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
+  .container { max-width: 980px; margin: 0 auto; padding: 1rem 2rem 3rem; }
+  .intro { max-width: 800px; padding: 2rem 2rem 0; margin: 0 auto; color: rgba(0,0,0,0.6); font-size: 0.95rem; line-height: 1.6; }
+  p { font-size: 1.05rem; color: #6b6b6b; margin-bottom: 1rem; line-height: 1.65; }
+
+  /* === A: section divider === */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 3rem 0;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(0,0,0,0.08);
+  }
+  .divider img { height: 22px; width: auto; opacity: 0.85; }
+
+  /* === B: signature sign-off at end of About === */
+  .signoff {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .signoff img { height: 34px; width: auto; opacity: 0.9; }
+
+  /* === C: footer mark next to copyright === */
+  footer {
+    padding: 2rem 1.5rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #6b6b6b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+  footer img { height: 18px; width: auto; opacity: 0.8; }
+</style>
+</head>
+<body>
+
+<div class="intro">
+  <strong>Logo reuse mockups.</strong> Using your real logo file at its natural (dark) color, since that's how it already renders once the nav scrolls past the dark hero.
+</div>
+
+<div class="label">A — Section divider (between two sections, instead of a plain border)</div>
+<div class="container">
+  <p>...end of Education section content...</p>
+  <div class="divider"><img src="images/logos/logo-main.png" alt="" /></div>
+  <p>About section would begin here...</p>
+</div>
+
+<div class="label">B — Signature sign-off at the end of the About section</div>
+<div class="container">
+  <p>What keeps me interested after 15 years is simple: there's always another problem to solve, another customer to understand, or a better way to do something. That's what makes this work so fulfilling.</p>
+  <div class="signoff"><img src="images/logos/logo-main.png" alt="Todd Greenbaum signature" /></div>
+</div>
+
+<div class="label">C — Small mark next to the footer copyright line</div>
+<footer>
+  <img src="images/logos/logo-main.png" alt="" />
+  <span>&copy; 2026 Todd Greenbaum</span>
+</footer>
+
+</body>
+</html>

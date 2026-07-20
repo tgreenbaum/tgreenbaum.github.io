@@ -279,6 +279,14 @@
   }
   .about__text strong { color: var(--fg); font-weight: 500; }
   .about__highlight { color: #4a83c0; font-weight: 500; }
+  .about__signoff {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .about__signoff-dash { color: var(--muted); font-size: 1.1rem; }
+  .about__signoff img { height: 34px; width: auto; opacity: 0.9; }
 
   /* Experience */
   .exp-list {
@@ -940,6 +948,10 @@
     <p class="about__text">
       What keeps me interested after 15 years is simple: there's always another problem to solve, another customer to understand, or a better way to do something. That's what makes this work so fulfilling.
     </p>
+    <div class="about__signoff">
+      <span class="about__signoff-dash">—</span>
+      <img src="images/logos/logo-main.png" alt="Todd Greenbaum signature" />
+    </div>
   </div>
 </section>
 
