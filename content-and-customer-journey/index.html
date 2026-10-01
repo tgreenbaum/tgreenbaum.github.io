@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Content and the Customer Journey | Todd Greenbaum</title>
+<meta name="description" content="How content types, themes, search intent, and metrics change across the awareness, consideration, and decision stages of the buyer journey." />
+<link rel="canonical" href="https://tgreenbaum.com/content-and-customer-journey" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  /* ---------- Reset & base (matches tgreenbaum.com) ---------- */
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--fg);
+    background: var(--bg);
+    padding-top: var(--nav-h);
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  :root {
+    --bg: #ffffff;
+    --fg: #111111;
+    --muted: #6b6b6b;
+    --line: rgba(0,0,0,0.08);
+    --card: #fafafa;
+    --nav-bg: rgba(255,255,255,0.85);
+    --nav-fg: #111111;
+    --blue: #4a83c0;          /* site accent */
+    --blue-text: #3d70a8;     /* same hue, darkened for small text contrast */
+    --blue-tint: #dce9f6;     /* inactive funnel stages */
+    --blue-tint-hover: #c4dbf0;
+    --nav-h: 76px;
+  }
+  [data-theme="dark"] {
+    --bg: #0e0e10;
+    --fg: #f3f3f3;
+    --muted: #a0a0a0;
+    --line: rgba(255,255,255,0.1);
+    --card: #18181b;
+    --nav-bg: rgba(14,14,16,0.75);
+    --nav-fg: #f3f3f3;
+    --blue-text: #8fb6e2;
+    --blue-tint: #1f2f43;
+    --blue-tint-hover: #2a4059;
+  }
+  :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+
+  /* ---------- Navigation (same as main page) ---------- */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: var(--nav-h);
+    padding: 0 2.5rem;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav__brand { display: inline-flex; align-items: center; line-height: 0; }
+  .nav__brand img { height: 36px; width: auto; }
+  [data-theme="dark"] .nav__brand img { filter: invert(1) brightness(1.2); }
+  .nav__links { display: flex; gap: 2rem; align-items: center; }
+  .nav__links a {
+    font-size: 0.9rem; font-weight: 500; color: var(--nav-fg);
+    position: relative; transition: opacity 0.2s ease;
+  }
+  .nav__links a:hover { opacity: 0.6; }
+  .nav__links a::after {
+    content: ''; position: absolute; left: 0; bottom: -4px;
+    width: 0; height: 1px; background: currentColor; transition: width 0.3s ease;
+  }
+  .nav__links a:hover::after { width: 100%; }
+
+  /* ---------- Page header ---------- */
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem; }
+  .intro { padding: 4rem 0 3rem; }
+  .intro h1 {
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 500; letter-spacing: -0.015em; line-height: 1.15;
+    margin-bottom: 1.25rem; max-width: 720px;
+  }
+  .intro p { font-size: 1.1rem; color: var(--muted); max-width: 720px; }
+
+  /* ---------- Layout ---------- */
+  .tool {
+    background: var(--card);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 4rem 0 5rem;
+  }
+  .layout { display: grid; grid-template-columns: 420px minmax(0, 1fr); gap: 56px; align-items: start; }
+
+  /* ---------- Funnel (bigger; label text sizes unchanged) ---------- */
+  .funnel-col { position: sticky; top: calc(var(--nav-h) + 24px); }
+  .funnel { width: 420px; max-width: 100%; height: auto; display: block; }
+  .funnel .stage { cursor: pointer; outline: none; }
+  .funnel .stage path { fill: var(--blue-tint); stroke: transparent; stroke-width: 3; transition: fill 0.2s ease; }
+  .funnel .stage:hover path { fill: var(--blue-tint-hover); }
+  .funnel .stage text { fill: var(--fg); pointer-events: none; font-family: inherit; transition: fill 0.2s ease; }
+  .funnel .stage[aria-selected="true"] path,
+  .funnel .stage[aria-selected="true"]:hover path { fill: var(--blue); }
+  .funnel .stage[aria-selected="true"] text { fill: #ffffff; }
+  .funnel .stage:focus-visible path { stroke: var(--fg); }
+  .funnel .abbr { font-size: 15px; font-weight: 600; }
+  .funnel .name { font-size: 24px; font-weight: 700; }
+  .funnel-hint { font-size: 0.8rem; color: var(--muted); margin-top: 1rem; text-align: center; }
+
+  /* Mobile tab bar (replaces funnel on small screens) */
+  .tabs { display: none; gap: 0.5rem; }
+  .tabs button {
+    flex: 1; font: inherit; font-size: 0.85rem; font-weight: 600; color: var(--fg);
+    background: var(--blue-tint); border: 1px solid var(--line); border-radius: 10px;
+    padding: 0.6rem 0.25rem; cursor: pointer; line-height: 1.3;
+  }
+  .tabs button small { display: block; font-size: 0.7rem; font-weight: 500; opacity: 0.75; }
+  .tabs button[aria-selected="true"] { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .tabs button[aria-selected="true"] small { opacity: 0.9; }
+
+  /* ---------- Panels ---------- */
+  .panels { min-height: 600px; }
+  .panel[hidden] { display: none; }
+  .panel.is-entering { animation: panelIn 0.18s ease both; }
+  @keyframes panelIn { from { opacity: 0; } to { opacity: 1; } }
+  /* no-JS: stack stages with spacing */
+  .panel + .panel { margin-top: 3.5rem; }
+  .js .panel + .panel { margin-top: 0; }
+
+  .panel__stage { font-size: 0.9rem; font-weight: 600; color: var(--blue-text); margin-bottom: 0.6rem; }
+  .panel__mindset {
+    font-size: clamp(1.35rem, 2.3vw, 1.75rem);
+    font-weight: 500; letter-spacing: -0.015em; line-height: 1.3;
+    margin-bottom: 1.25rem;
+  }
+  .panel__goal { font-size: 1.05rem; color: var(--muted); max-width: 640px; margin-bottom: 2rem; }
+  .panel__goal strong { color: var(--fg); font-weight: 500; }
+
+  .cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+  .col {
+    background: var(--bg); border: 1px solid var(--line); border-radius: 12px;
+    padding: 1.35rem 1.5rem 1.5rem;
+  }
+  .col h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.85rem; }
+  .col ul { list-style: none; }
+  .col li { position: relative; padding-left: 1.1rem; margin-bottom: 0.5rem; font-size: 0.92rem; line-height: 1.5; color: var(--muted); }
+  .col li:last-child { margin-bottom: 0; }
+  .col li::before { content: ''; position: absolute; left: 0; top: 0.62em; width: 5px; height: 5px; border-radius: 50%; background: var(--blue); }
+  .col.intent li { font-style: italic; color: var(--fg); }
+
+  .stepper { display: flex; gap: 0.75rem; margin-top: 2rem; flex-wrap: wrap; }
+  .stepper button {
+    font: inherit; font-size: 0.9rem; font-weight: 500; cursor: pointer;
+    padding: 0.7rem 1.25rem; border-radius: 999px;
+    background: var(--bg); color: var(--fg); border: 1px solid var(--line);
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+  .stepper button:hover { border-color: var(--blue); color: var(--blue-text); }
+  .stepper .next { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .stepper .next:hover { background: var(--blue-text); border-color: var(--blue-text); color: #fff; }
+  .no-js .stepper { display: none; }
+
+  footer { padding: 2rem 1.5rem; text-align: center; font-size: 0.8rem; color: var(--muted); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-height: 760px) and (min-width: 961px) { .funnel-col { position: static; } }
+  @media (max-width: 960px) {
+    .tool { padding-top: 0; }
+    .layout { grid-template-columns: 1fr; gap: 0; }
+    .funnel-col {
+      position: sticky; top: var(--nav-h); z-index: 5;
+      background: var(--card); padding: 0.85rem 0; margin-bottom: 2rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .funnel, .funnel-hint { display: none; }
+    .tabs { display: flex; }
+    .panels { min-height: 0; }
+  }
+  @media (max-width: 640px) {
+    :root { --nav-h: 68px; }
+    .nav { padding: 0 1.25rem; }
+    .nav__links { gap: 1.25rem; }
+    .nav__links a:not(:last-of-type) { display: none; }
+    .intro { padding: 3rem 0 2.5rem; }
+    .cols { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .panel.is-entering { animation: none; }
+    * { transition: none !important; }
+  }
+  @media print {
+    .nav, .funnel-col, .stepper { display: none !important; }
+    .panel[hidden] { display: block !important; }
+    body { padding-top: 0; }
+  }
+</style>
+<script>document.documentElement.className += ' js';</script>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="/" class="nav__brand" aria-label="Home">
+    <img src="/images/logos/logo-main.png" alt="Todd Greenbaum logo" />
+  </a>
+  <div class="nav__links">
+    <a href="/#experience">Experience</a>
+    <a href="/#expertise">Expertise</a>
+    <a href="/#education">Education</a>
+    <a href="/#about">About</a>
+    <a href="/#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="intro">
+  <div class="wrap">
+    <h1>Content and the customer journey</h1>
+    <p>Buyers don't need the same thing at every step. Select a stage to see what buyers are thinking, the content that helps them, the intent to target, and the metrics that show it's working.</p>
+  </div>
+</header>
+
+<main class="tool">
+  <div class="wrap">
+    <div class="layout">
+
+      <aside class="funnel-col">
+        <svg class="funnel" viewBox="0 0 420 612" role="tablist" aria-label="Funnel stages" aria-orientation="vertical">
+          <g class="stage" role="tab" id="tab-awareness" data-stage="awareness" aria-controls="panel-awareness" aria-selected="true" tabindex="0">
+            <path d="M0 0 H420 L365.4 210 H54.6 Z"/>
+            <text x="210" y="97" text-anchor="middle" class="abbr">TOFU</text>
+            <text x="210" y="132" text-anchor="middle" class="name">Awareness</text>
+          </g>
+          <g class="stage" role="tab" id="tab-consideration" data-stage="consideration" aria-controls="panel-consideration" aria-selected="false" tabindex="-1">
+            <path d="M56 221.2 H364 L310.8 417.2 H109.2 Z"/>
+            <text x="210" y="304" text-anchor="middle" class="abbr">MOFU</text>
+            <text x="210" y="339" text-anchor="middle" class="name">Consideration</text>
+          </g>
+          <g class="stage" role="tab" id="tab-decision" data-stage="decision" aria-controls="panel-decision" aria-selected="false" tabindex="-1">
+            <path d="M110.6 428.4 H309.4 L266 610.4 H154 Z"/>
+            <text x="210" y="506" text-anchor="middle" class="abbr">BOFU</text>
+            <text x="210" y="541" text-anchor="middle" class="name">Decision</text>
+          </g>
+        </svg>
+        <p class="funnel-hint">Select a stage, or use the arrow keys</p>
+
+        <div class="tabs" role="tablist" aria-label="Funnel stages">
+          <button type="button" role="tab" data-stage="awareness" aria-selected="true"><small>TOFU</small>Awareness</button>
+          <button type="button" role="tab" data-stage="consideration" aria-selected="false" tabindex="-1"><small>MOFU</small>Consideration</button>
+          <button type="button" role="tab" data-stage="decision" aria-selected="false" tabindex="-1"><small>BOFU</small>Decision</button>
+        </div>
+      </aside>
+
+      <div class="panels">
+
+        <section class="panel" id="panel-awareness" role="tabpanel" aria-labelledby="tab-awareness" data-stage="awareness">
+          <p class="panel__stage">Awareness: top of funnel</p>
+          <h2 class="panel__mindset">Buyers are experiencing a problem or pain and seek info and resources to better understand it, give it a name, and alleviate it—without yet knowing of a solution.</h2>
+          <p class="panel__goal">Content that educates, informs, engages, shows thought leadership, introduces our brand, and addresses common struggles, pain points, and questions</p>
+          <div class="cols">
+            <div class="col"><h3>Common types</h3><ul>
+              <li>Blogs</li><li>Infographics</li><li>Social posts</li><li>Short videos</li><li>Webinars (ungated)</li><li>Ebooks (ungated)</li>
+            </ul></div>
+            <div class="col"><h3>Themes</h3><ul>
+              <li>High-level overviews</li><li>Basic strategies</li><li>Quick tips</li><li>Broad recs</li><li>Industry stats &amp; trends</li><li>How-tos</li>
+            </ul></div>
+            <div class="col intent"><h3>Examples of intent</h3><ul>
+              <li>“How to print stamps and labels”</li><li>“Discount shipping rates for ecomm”</li><li>“How to manage returns”</li><li>“High volume label printing for warehouses”</li><li>“Ship faster during busy seasons”</li>
+            </ul></div>
+            <div class="col"><h3>Metrics</h3><ul>
+              <li>SEO</li><li>Traffic</li><li>Impressions</li><li>Engagement</li><li>Views</li>
+            </ul></div>
+          </div>
+          <div class="stepper"><button type="button" class="next" data-go="consideration">Next: Consideration</button></div>
+        </section>
+
+        <section class="panel" id="panel-consideration" role="tabpanel" aria-labelledby="tab-consideration" data-stage="consideration">
+          <p class="panel__stage">Consideration: middle of funnel</p>
+          <h2 class="panel__mindset">Buyers have defined and named their problem and are starting to explore potential solutions.</h2>
+          <p class="panel__goal">Content that builds trust, addresses specific challenges and audience segments, and provides the information and proof-points they need to evaluate their options</p>
+          <div class="cols">
+            <div class="col"><h3>Common types</h3><ul>
+              <li>Blogs</li><li>Infographics</li><li>Guides, Checklists, Tools, and Comparison charts</li><li>Case studies</li><li>Social posts</li><li>Emails</li><li>Webinars (gated)</li><li>Ebooks (gated)</li><li>Whitepapers &amp; Reports (gated)</li><li>Product demo videos</li>
+            </ul></div>
+            <div class="col"><h3>Themes</h3><ul>
+              <li>In-depth strategies and tips, and specific recs</li><li>Deep-dive of industry stats and trends</li><li>Product differentiators</li><li>First-party data</li><li>Key findings from research</li>
+            </ul></div>
+            <div class="col intent"><h3>Examples of intent</h3><ul>
+              <li>“Top shipping software compatible w/ Shopify”</li><li>“Direct carrier vs. multi carrier”</li><li>“Real time inventory and order tracking”</li><li>“Tools to optimize shipping workflow”</li><li>“Integrating returns with ecomm platform”</li>
+            </ul></div>
+            <div class="col"><h3>Metrics</h3><ul>
+              <li>Downloads and form-fills</li><li>Conversion rate</li><li>Email open rates</li><li>Engagement</li><li>Lead qualification and nurturing</li>
+            </ul></div>
+          </div>
+          <div class="stepper">
+            <button type="button" data-go="awareness">Previous: Awareness</button>
+            <button type="button" class="next" data-go="decision">Next: Decision</button>
+          </div>
+        </section>
+
+        <section class="panel" id="panel-decision" role="tabpanel" aria-labelledby="tab-decision" data-stage="decision">
+          <p class="panel__stage">Decision: bottom of funnel</p>
+          <h2 class="panel__mindset">Buyers have decided on their solution strategy, method, or approach, and their goal is to compile a list of available vendors.</h2>
+          <p class="panel__goal">Content that is personalized, targets decision-makers, handles objections, offers reassurance, instills buyer confidence, and compels action or purchase</p>
+          <div class="cols">
+            <div class="col"><h3>Common types</h3><ul>
+              <li>Testimonials and reviews</li><li>Sales decks</li><li>Case studies</li>
+            </ul></div>
+            <div class="col"><h3>Themes</h3><ul>
+              <li>Free trials</li><li>Live demos</li><li>Social proof</li>
+            </ul></div>
+            <div class="col intent"><h3>Examples of intent</h3><ul>
+              <li>“ShipStation vs. ShipHero”</li><li>“Metapack demo”</li><li>“Shipping software pricing plans”</li>
+            </ul></div>
+            <div class="col"><h3>Metrics</h3><ul>
+              <li>Pipeline, Opps, MQLs</li><li>CPA</li><li>Revenue and other sales KPIs</li>
+            </ul></div>
+          </div>
+          <div class="stepper">
+            <button type="button" data-go="consideration">Previous: Consideration</button>
+            <button type="button" class="next" data-go="awareness">Start over: Awareness</button>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>&copy; <span id="year"></span> Todd Greenbaum</footer>
+
+<script>
+(function () {
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var order = ['awareness', 'consideration', 'decision'];
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"][data-stage]'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function select(stage, opts) {
+    opts = opts || {};
+    if (order.indexOf(stage) === -1) stage = 'awareness';
+
+    tabs.forEach(function (t) {
+      var on = t.getAttribute('data-stage') === stage;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.setAttribute('tabindex', on ? '0' : '-1');
+    });
+    panels.forEach(function (p) {
+      var on = p.getAttribute('data-stage') === stage;
+      p.hidden = !on;
+      p.classList.remove('is-entering');
+      if (on && opts.animate) { void p.offsetWidth; p.classList.add('is-entering'); }
+    });
+
+    if (opts.updateHash) history.replaceState(null, '', '#' + stage);
+
+    if (opts.focusTab) {
+      var visible = tabs.filter(function (t) { return t.getAttribute('data-stage') === stage && t.getClientRects().length; })[0];
+      if (visible) visible.focus({ preventScroll: true });
+    }
+    if (opts.scrollToPanel) {
+      var top = document.querySelector('.panels').getBoundingClientRect().top + window.scrollY;
+      var offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'), 10) || 76;
+      if (window.innerWidth <= 960) offset += 80;
+      if (Math.abs(window.scrollY - (top - offset)) > 40 && (window.scrollY > top - offset)) {
+        window.scrollTo({ top: top - offset - 16, behavior: reduce ? 'auto' : 'smooth' });
+      }
+    }
+  }
+
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      select(t.getAttribute('data-stage'), { animate: true, updateHash: true });
+    });
+    t.addEventListener('keydown', function (e) {
+      var i = order.indexOf(t.getAttribute('data-stage'));
+      var next = null;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') next = order[(i + 1) % order.length];
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') next = order[(i + order.length - 1) % order.length];
+      if (e.key === 'Home') next = order[0];
+      if (e.key === 'End') next = order[order.length - 1];
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(t.getAttribute('data-stage'), { animate: true, updateHash: true }); return; }
+      if (next) { e.preventDefault(); select(next, { animate: true, updateHash: true, focusTab: true }); }
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-go]'), function (b) {
+    b.addEventListener('click', function () {
+      select(b.getAttribute('data-go'), { animate: true, updateHash: true, scrollToPanel: true });
+    });
+  });
+
+  window.addEventListener('hashchange', function () {
+    select(location.hash.replace('#', ''), { animate: true });
+  });
+
+  select(location.hash.replace('#', '') || 'awareness');
+})();
+</script>
+</body>
+</html>
