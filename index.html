@@ -524,6 +524,11 @@
   }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
+  /* Phones/tablets: skip the fade-in so long sections can never stay hidden */
+  @media (max-width: 900px) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
   /* Mobile */
   @media (max-width: 640px) {
     .nav { padding: 1rem 1.25rem; }
@@ -993,16 +998,29 @@
   window.addEventListener('resize', updateNav);
   updateNav();
 
-  // Reveal on scroll
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.01 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  // Reveal on scroll (with safety nets so content can never stay hidden)
+  const revealEls = document.querySelectorAll('.reveal');
+  function showAll() { revealEls.forEach(el => el.classList.add('visible')); }
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -5% 0px' });
+    revealEls.forEach(el => io.observe(el));
+    // Fallback: if anything is still hidden shortly after load or first scroll, show it
+    setTimeout(showAll, 4000);
+    window.addEventListener('scroll', function once() {
+      setTimeout(showAll, 1200);
+      window.removeEventListener('scroll', once);
+    }, { passive: true });
+  } else {
+    showAll();
+  }
 </script>
 
 </body>
